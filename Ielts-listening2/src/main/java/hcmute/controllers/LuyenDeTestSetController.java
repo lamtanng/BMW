@@ -44,6 +44,7 @@ public class LuyenDeTestSetController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		resp.setContentType("text/html");
 		String url = req.getRequestURI().toString();
 		if (url.contains("testset")) {
@@ -82,6 +83,7 @@ public class LuyenDeTestSetController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");

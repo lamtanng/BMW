@@ -55,6 +55,7 @@ public class UserOrderController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		String url = req.getRequestURI().toString();
 		HttpSession session = req.getSession(false);
 		user = (User) session.getAttribute("user");
@@ -91,6 +92,7 @@ public class UserOrderController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		String url = req.getRequestURI().toString();
 		IUserService userService = new UserServiceImpl();
 		ICartService cartService = new CartServiceImpl();

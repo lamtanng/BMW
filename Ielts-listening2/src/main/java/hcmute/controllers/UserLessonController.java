@@ -65,6 +65,7 @@ public class UserLessonController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		resp.setContentType("text/html");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
@@ -157,6 +158,7 @@ public class UserLessonController extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		String url = req.getRequestURI().toString();
 
 		if (url.contains("reply")) {

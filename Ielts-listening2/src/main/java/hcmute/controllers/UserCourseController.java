@@ -44,6 +44,7 @@ public class UserCourseController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		String url = req.getRequestURI().toString();
 		String gia = req.getParameter("gia") == null ? "" : req.getParameter("gia");
 		String rate = req.getParameter("rate") == null ? "" : req.getParameter("rate");
@@ -97,7 +98,7 @@ public class UserCourseController extends HttpServlet {
 						if (star > 0) {
 							percentCountOfStars[star - 1] += 1;
 							people += 1;
-						} 
+						}
 						// lỗi
 					}
 				}
