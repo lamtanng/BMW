@@ -3,47 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/common/taglib.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-
-<link rel="stylesheet"
-	href="../assets/libs/glightbox/dist/css/glightbox.min.css">
-<!-- Required meta tags -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta name="author" content="Codescandy" />
-
-<!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon"
-	href="../assets/images/favicon/favicon.ico" />
-
-<!-- darkmode js -->
-<script src="../assets/js/vendors/darkMode.js"></script>
-
-<!-- Libs CSS -->
-<link href="../assets/fonts/feather/feather.css" rel="stylesheet" />
-<link href="../assets/libs/bootstrap-icons/font/bootstrap-icons.min.css"
-	rel="stylesheet" />
-<link href="../assets/libs/simplebar/dist/simplebar.min.css"
-	rel="stylesheet" />
-
-<!-- Theme CSS -->
-<link rel="stylesheet" href="../assets/css/theme.min.css">
-
-<link rel="canonical" href="course-single.html">
-<title>Course Single | Geeks - Bootstrap 5 Template</title>
-
-
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
 
 <body>
 	<main>
@@ -96,7 +55,7 @@
 								<c:if test="${people > 0 }">
 									<div>
 										<span class="fs-6 ms-4 align-text-top"> <c:forEach
-												var="i" begin="1" end="${starInteger }">
+												var="i" begin="1" end="5">
 												<svg xmlns="http://www.w3.org/2000/svg" width="12"
 													height="12" fill="currentColor"
 													class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
@@ -104,15 +63,7 @@
 														d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
 		                                            </path>
 	                                        	</svg>
-											</c:forEach> <c:forEach var="i" begin="1" end="${5 - starInteger }">
-												<svg xmlns="http://www.w3.org/2000/svg" width="12"
-													height="12" fill="currentColor"
-													class="bi bi-star-fill text-light" viewBox="0 0 16 16">
-	                                                <path
-														d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-	                                                            </path>
-	                                            </svg>
-											</c:forEach>
+											</c:forEach> 
 										</span> <span class="text-white">(${people})</span>
 									</div>
 								</c:if>
@@ -370,12 +321,13 @@
 													<div class="col-auto text-center">
 														<fmt:formatNumber type="number" maxFractionDigits="1"
 															value="${star}" var="starRounded" />
-														<h3 class="display-2 fw-bold">${starRounded}</h3>
+														<h3 id="rateStars" value="${starRounded}" class="display-2 fw-bold">${starRounded}</h3>
 														<fmt:formatNumber type="number" maxFractionDigits="0"
 															value="${star}" var="starInteger" />
-														<span class="fs-6"> <c:forEach var="i" begin="1"
-																end="${starInteger }">
-																<svg xmlns="http://www.w3.org/2000/svg" width="12"
+														<span class="fs-6" id="ratingContainer"> 
+															<c:forEach var="i" begin="1" end="5">
+																<svg class="starItem"
+																 xmlns="http://www.w3.org/2000/svg" width="12"
 																	height="12" fill="currentColor"
 																	class="bi bi-star-fill text-warning"
 																	viewBox="0 0 16 16">
@@ -383,15 +335,7 @@
 																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
 					                                            </path>
 				                                        	</svg>
-															</c:forEach> <c:forEach var="i" begin="1" end="${5 - starInteger }">
-																<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light" viewBox="0 0 16 16">
-				                                                <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-				                                                            </path>
-				                                            </svg>
-															</c:forEach>
+															</c:forEach> 
 														</span>
 														<p class="mb-0 fs-6">(Dựa trên ${people } đánh giá)</p>
 													</div>
@@ -1071,7 +1015,7 @@
 			<div class="row align-items-center g-0 border-top py-2">
 				<!-- Desc -->
 				<div class="col-md-6 col-12 text-center text-md-start">
-					<span> © <span id="copyright"> <script>
+					<span> © <span id="copyright"> <script nonce="rAnd0m">
 						document.getElementById("copyright").appendChild(
 								document.createTextNode(new Date()
 										.getFullYear()));
@@ -1101,7 +1045,7 @@
 				d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
     </svg>
 	</div>
-	<script>
+	<script nonce="rAnd0m">
 		function generateToken(length) {
 			const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 			let token = '';
@@ -1144,30 +1088,18 @@
 				return token === csrfTokenGlobal;
 			}
 		});
-		let number = $
-		{
-			course.cost
-		};
-		let formattedNumber = number.toLocaleString('en-US');
-		const cost = document.querySelector(".price-container span");
-		cost.textContent = formattedNumber;
+		
+		
+		const getRatingStars = function(){
+			var rateContainer = document.getElementsByClassName("starItem");
+			var rateStars = Math.round(+document.getElementById("rateStars").getAttribute("value"));
+			
+			for(let i = 0; i < rateStars; i++){
+				rateContainer[i].classList.add("text-warning")
+			}
+		}
+		getRatingStars();
+		
+		
 	</script>
-	<!-- Scripts -->
-	<!-- Libs JS -->
-	<script src="../assets/libs/%40popperjs/core/dist/umd/popper.min.js"></script>
-	<script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
-
-	<!-- Theme JS -->
-	<script src="../assets/js/theme.min.js"></script>
-
-
-	<script src="../assets/libs/tippy.js/dist/tippy-bundle.umd.min.js"></script>
-
-	<script src="../assets/js/vendors/tooltip.js"></script>
-	<script src="../assets/libs/glightbox/dist/js/glightbox.min.js"></script>
-	<script src="../assets/js/vendors/glight.js"></script>
 </body>
-
-
-</html>
