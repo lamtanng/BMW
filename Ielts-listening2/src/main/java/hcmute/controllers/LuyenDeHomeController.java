@@ -47,6 +47,7 @@ public class LuyenDeHomeController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setHeader("X-Frame-Options", "DENY");
 		response.setHeader("X-Content-Type-Options", "nosniff");
+		response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user != null && enrollTestService.findEnTestProcess(user.getUserId()) != null) {
@@ -83,7 +84,7 @@ public class LuyenDeHomeController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setHeader("X-Content-Type-Options", "nosniff");
-
+		resp.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
