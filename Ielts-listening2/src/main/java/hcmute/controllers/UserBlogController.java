@@ -1,9 +1,11 @@
 package hcmute.controllers;
 
+import java.awt.print.Printable;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -130,10 +132,14 @@ public class UserBlogController extends HttpServlet {
 				long millis = System.currentTimeMillis();
 				Date date = new Date(millis);
 				newBlog.setCreatedDate(date);
-				String fileName = "" + System.currentTimeMillis();
+//				String fileName = "" + System.currentTimeMillis();
+//				newBlog.setImage((UploadUtils.processUpload("image", req,
+//						Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
+				String fileName = UUID.randomUUID().toString();
+				System.out.println("File name nè: "+fileName);
+
 				newBlog.setImage((UploadUtils.processUpload("image", req,
 						Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
-
 				String title = req.getParameter("title");
 				String content = req.getParameter("content");
 				User user = (User) session.getAttribute("user");
@@ -175,7 +181,17 @@ public class UserBlogController extends HttpServlet {
 					if (oldBlog.getImage() != null) {
 						DeleteImage.deleteImage(oldBlog.getImage(), Constants.FOLDER_BLOG);
 					} // update anh moi
-					String fileName = "" + System.currentTimeMillis();
+						// đặt tên ảnh theo thời gian
+//					String fileName = "" + System.currentTimeMillis();
+//					newBlog.setImage((UploadUtils.processUpload("image", req,
+//							Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
+//					
+					// UUID được sử dụng để tạo ra một giá trị định danh duy nhất cho các đối tượng,
+					// người dùng, bài viết, tệp tin, hoặc bất kỳ đối tượng nào cần có một định danh
+					// duy nhất trong hệ thống.
+					String fileName = UUID.randomUUID().toString();
+					System.out.println("File name nè: "+fileName);
+
 					newBlog.setImage((UploadUtils.processUpload("image", req,
 							Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
 				}

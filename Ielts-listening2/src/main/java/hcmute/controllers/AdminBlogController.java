@@ -3,6 +3,7 @@ package hcmute.controllers;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -110,7 +111,9 @@ public class AdminBlogController extends HttpServlet {
 				long millis = System.currentTimeMillis();
 				Date date = new Date(millis);
 				newBlog.setCreatedDate(date);
-				String fileName = "" + System.currentTimeMillis();
+				String fileName = UUID.randomUUID().toString();
+				System.out.println("File name nè: "+fileName);
+
 				newBlog.setImage((UploadUtils.processUpload("image", req,
 						Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
 
@@ -156,7 +159,12 @@ public class AdminBlogController extends HttpServlet {
 					if (oldBlog.getImage() != null) {
 						DeleteImage.deleteImage(oldBlog.getImage(), Constants.FOLDER_BLOG);
 					} // update anh moi
-					String fileName = "" + System.currentTimeMillis();
+//					String fileName = "" + System.currentTimeMillis();
+//					newBlog.setImage((UploadUtils.processUpload("image", req,
+//							Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
+					String fileName = UUID.randomUUID().toString();
+					System.out.println("File name nè: "+fileName);
+
 					newBlog.setImage((UploadUtils.processUpload("image", req,
 							Constants.DIR + "\\" + Constants.FOLDER_BLOG + "\\", fileName)));
 				}
