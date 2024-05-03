@@ -43,6 +43,7 @@ public class UserCourseController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 		String gia = req.getParameter("gia") == null ? "" : req.getParameter("gia");
 		String rate = req.getParameter("rate") == null ? "" : req.getParameter("rate");

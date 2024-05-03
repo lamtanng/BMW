@@ -17,6 +17,7 @@ public class HelpPageController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURI().toString();
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		if (url.contains("helpcenter")) {
 			req.getRequestDispatcher("/views/user/HelpCenter.jsp").forward(req, resp);
 		} else if (url.contains("guides")) {
@@ -28,6 +29,7 @@ public class HelpPageController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		super.doPost(req, resp);
 	}
 }

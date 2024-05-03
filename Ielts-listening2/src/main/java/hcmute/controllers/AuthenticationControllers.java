@@ -41,6 +41,7 @@ public class AuthenticationControllers extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 		if (url.contains("login")) {
 			getLogin(req, resp);
@@ -77,6 +78,7 @@ public class AuthenticationControllers extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 		if (url.contains("signup")) {
 			SignUp(req, resp);
