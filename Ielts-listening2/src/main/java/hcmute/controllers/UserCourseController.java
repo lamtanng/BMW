@@ -1,6 +1,7 @@
 package hcmute.controllers;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,9 @@ public class UserCourseController extends HttpServlet {
 		int tab = 1;
 		int pagesize = 8;
 		String searchStr = req.getParameter("search") == null ? "" : req.getParameter("search");
+		// loại bỏ các ký tự đặc biệt ../ ....//
+		String safeSearchStr = Paths.get(searchStr).normalize().toString();
+
 		if (url.contains("course-detail")) {
 			String courseId = req.getParameter("courseId");
 			Course course = courseService.findById(courseId);
@@ -118,11 +122,11 @@ public class UserCourseController extends HttpServlet {
 
 			}
 			Long count = adminKhoaHocService.countKhoaHoc();
-			List<Course> allCourseList = adminKhoaHocService.findAll(searchStr, tab);
+			List<Course> allCourseList = adminKhoaHocService.findAll(safeSearchStr, tab);
 			for (Course course : allCourseList) {
 				System.out.print("course" + course.getCourseId());
 			}
-			List<Course> CourseList = adminKhoaHocService.findAll(page - 1, pagesize, searchStr, tab);
+			List<Course> CourseList = adminKhoaHocService.findAll(page - 1, pagesize, safeSearchStr, tab);
 			req.setAttribute("countCourse", count);
 			int pageNum = (int) (allCourseList.size() / pagesize) + (allCourseList.size() % pagesize == 0 ? 0 : 1);
 

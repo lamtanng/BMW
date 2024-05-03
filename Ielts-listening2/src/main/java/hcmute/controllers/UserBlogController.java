@@ -1,6 +1,7 @@
 package hcmute.controllers;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -44,10 +45,12 @@ public class UserBlogController extends HttpServlet {
 		if (url.contains("blogs-page")) {
 			int page = Integer.parseInt(req.getParameter("page") == null ? "1" : req.getParameter("page"));
 			String searchStr = req.getParameter("search") == null ? "" : req.getParameter("search");
-			List<Blog> listBlog = blogService.findAll(searchStr);
+			String safeSearchStr = Paths.get(searchStr).normalize().toString();
+
+			List<Blog> listBlog = blogService.findAll(safeSearchStr);
 			List<User> listUser = uService.findAll();
 			int pagesize = 3 * 3;
-			List<Blog> listBlogPage = blogService.findAll(page - 1, pagesize, searchStr);
+			List<Blog> listBlogPage = blogService.findAll(page - 1, pagesize, safeSearchStr);
 			int pageNum = (int) (listBlog.size() / pagesize) + (listBlog.size() % pagesize == 0 ? 0 : 1);
 			req.setAttribute("pageNum", pageNum);
 			req.setAttribute("topicIMG", Constants.FOLDER_BLOG);
