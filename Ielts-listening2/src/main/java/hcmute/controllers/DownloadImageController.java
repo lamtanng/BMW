@@ -72,7 +72,7 @@ public class DownloadImageController extends HttpServlet {
 						resp.getWriter().println("Unsupported file type.");
 					}
 				} else {
-					sendNotFoundResponse(resp);
+					sendBadRequestResponse(resp);
 				}
 			} catch (IOException e) {
 				sendBadRequestResponse(resp);
