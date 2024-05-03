@@ -28,6 +28,9 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="author" content="Codescandy" />
+<meta http-equiv="Content-Security-policy" 
+	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
+	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'; frame-ancestors 'self'"/>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 
@@ -46,15 +49,14 @@
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../assets/css/theme.min.css" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <script
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script
