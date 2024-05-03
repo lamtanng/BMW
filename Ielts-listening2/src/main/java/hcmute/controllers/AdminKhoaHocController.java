@@ -2,6 +2,7 @@ package hcmute.controllers;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,6 +41,8 @@ public class AdminKhoaHocController extends HttpServlet {
 		String gia = req.getParameter("gia") == null ? "" : req.getParameter("gia");
 		String rate = req.getParameter("rate") == null ? "" : req.getParameter("rate");
 		String searchStr = req.getParameter("search") == null ? "" : req.getParameter("search");
+		String safeSearchStr = Paths.get(searchStr).normalize().toString();
+
 		int page = Integer.parseInt(req.getParameter("page") == null ? "1" : req.getParameter("page"));
 		int tab = 1;
 		int pagesize = 8;
@@ -61,11 +64,11 @@ public class AdminKhoaHocController extends HttpServlet {
 				rd.forward(req, resp);
 			}
 			Long count = adminKhoaHocService.countKhoaHoc();
-			List<Course> allCourseList = adminKhoaHocService.findAll(searchStr, tab);
+			List<Course> allCourseList = adminKhoaHocService.findAll(safeSearchStr, tab);
 			for (Course course : allCourseList) {
 				System.out.print("course" + course.getCourseId());
 			}
-			List<Course> CourseList = adminKhoaHocService.findAll(page - 1, pagesize, searchStr, tab);
+			List<Course> CourseList = adminKhoaHocService.findAll(page - 1, pagesize, safeSearchStr, tab);
 			req.setAttribute("countCourse", count);
 			int pageNum = (int) (allCourseList.size() / pagesize) + (allCourseList.size() % pagesize == 0 ? 0 : 1);
 			req.setAttribute("course", CourseList);
