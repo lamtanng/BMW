@@ -11,6 +11,9 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="author" content="Codescandy" />
+<meta http-equiv="Content-Security-policy" 
+	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
+	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self';frame-ancestors 'none'"/>
 
 <link href="<c:url value='/views/luyende/css/styleLuyenDeTest.css' />"
 	rel="stylesheet" type="text/css">
