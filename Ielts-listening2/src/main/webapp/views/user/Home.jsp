@@ -192,7 +192,7 @@
 								<c:forEach var="item" items="${course}">								
 									<li class="card">
 												<c:if test="${item.image != null}">
-													<a class="w-100" href="course-detail?courseId=${item.courseId}">
+													<a class="w-100" href="listLesson?courseId=${item.courseId}">
 													<img style="height: 200px; object-fit: cover;" onerror="setDefaultImage(this)"
 													src="<c:url value='/image?fname=courseIMG/${ item.image}'/>" alt="course"
 													class="card-img-top img-fluid"></a>

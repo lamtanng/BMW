@@ -15,7 +15,7 @@
 				<!-- Page header -->
 				<div class="border-bottom pb-3 mb-3">
 					<div class="mb-2 mb-lg-0">
-						<h1 class="mb-0 h2 fw-bold">Chi tiết hóa đơn</h1>
+						<h1 class="mb-0 h2 fw-bold">Order Detail</h1>
 					</div>
 				</div>
 			</div>
@@ -29,19 +29,21 @@
 					<div class="card-body">
 						<div class="mb-6">
 							<!-- heading -->
-							<h2 class="mb-0">Cảm ơn bạn đã đặt hàng</h2>
-							<p class="mb-0">Chúng tôi đánh giá cao đơn đặt hàng của bạn. Hiện đơn hàng của bạn đang được xử lý và sẽ sớm gửi cho bạn xác nhận!</p>
+							<h2 class="mb-0">Thank you for your order</h2>
+							<p class="mb-0">We appreciate your order, were currently
+								processing it. So hard tight and we will send you confirmation
+								very soon!</p>
 						</div>
 						<div>
 							<div class="border-bottom mb-3 pb-3">
 								<!-- text -->
 								<div class="d-flex align-items-center">
-									<h4 class="mb-0">Mã đơn đặt hàng: </h4>
+									<h4 class="mb-0">Order tracking number</h4>
 									<a href="#" class="ms-2 fw-semibold">${order.paymentId}</a>
 
 								</div>
 								<div class="mb-0 d-flex align-items-center ">
-									<a href="#" class=" fw-semibold">Thời gian:
+									<a href="#" class=" fw-semibold">Date time:
 										${order.dateBuy} </a>
 								</div>
 
@@ -58,12 +60,15 @@
 										<div class="d-md-flex">
 											<!-- img -->
 											<div>
-												<img src="<c:url value='/image?fname=${folder}/${course.userCourse.courses.image}'/>"
+												<img src="../assets/images/ecommerce/ecommerce-img-1.jpg"
 													alt="" class="img-4by3-xl rounded" />
 											</div>
 											<!-- text -->
 											<div class="ms-md-4 mt-2">
-												<h5 class="mb-1">${course.userCourse.courses.courseName}</h5>                               
+												<h5 class="mb-1">${course.userCourse.courses.courseName}</h5>
+												<span> Color: <span class="text-dark">Orange</span> ,
+													Size: <span class="text-dark">10</span>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -90,11 +95,25 @@
 										thức thanh toán </span> <span class="text-secondary fw-medium">
 										Chuyển khoản ngân hàng </span></li>
 							</ul>
+							<hr class="my-3" />
+							<div>
+								<form id="buyCourseForm" action="confirmCheckout" method="post">
+									<button type="button" style="float: right;"
+										class="btn btn-primary" onclick="redirectToCoursePage()">
+										Mua khóa học mới</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<script>
+		function redirectToCoursePage() {
+			window.location.href = '/Ielts-listening2/user/course';
+		}
+	</script>
 </body>
 </html>

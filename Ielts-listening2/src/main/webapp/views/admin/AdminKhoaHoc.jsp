@@ -403,7 +403,7 @@ Long count = (Long) request.getAttribute("countCourse");
 																<c:choose>
 																	<c:when test="${user ne null}">
 																		<!-- User is logged in, submit the form -->
-																		<form action="" method="post">
+																		<form action="addToCart" method="post">
 																			<input type="hidden" name="courseId"
 																				value="${i.courseId }">
 																			<!-- <button type="submit"
@@ -416,9 +416,7 @@ Long count = (Long) request.getAttribute("countCourse");
 																					type="button" data-toggle="tooltip"
 																					data-placement="top" title="Delete">
 																					<i class="fa fa-trash"></i>
-																				</button></a> 
-																				<a href="#" value="${i.courseId }"><button
-																					onclick="showModel1()"
+																				</button></a> <a href="#" value="${i.courseId }"><button
 																					class="btn btn-sm rounded-0 button-add-course"
 																					value="${i.courseId }" type="button"
 																					data-toggle="tooltip" data-placement="top"
@@ -556,7 +554,7 @@ Long count = (Long) request.getAttribute("countCourse");
 																					class="btn btn-sm rounded-0 button-add-course"
 																					value="${i.courseId }" type="button"
 																					data-toggle="tooltip" data-placement="top"
-																					title="Update" ">
+																					title="Update">
 																					<i class="fa fa-edit"></i>
 																				</button></a>
 																		</form>
@@ -666,7 +664,7 @@ Long count = (Long) request.getAttribute("countCourse");
 		    console.log(selectedCourse);
 		    console.log(selectedCourse.courseName);
 		    // Populate the modal with course information
-		    document.getElementById('courseId').setAttribute("value", selectedCourse.courseId);
+		    document.getElementById('courseId').value = selectedCourse.courseId;
 		    document.getElementById('courseName').value = selectedCourse.courseName;
 		    document.getElementById('description').value = selectedCourse.description;
 		    document.getElementById('cost').value = selectedCourse.cost;

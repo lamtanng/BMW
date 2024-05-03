@@ -91,8 +91,8 @@ User user = (User) session.getAttribute("user");
 									</button>
 								</div>
 							</div>
-							<div class="ms-2 d-flex  adminkhoahoc-filter--rate ">
-								<p class="my-auto">Đánh giá:</p>
+							<div class="d-flex  adminkhoahoc-filter--rate ">
+								<p class="my-auto">Rate:</p>
 								<div class="dropdown dropdown-rate my-auto ms-2">
 									<button
 										class="btn bg-color-white dropdown-toggle border border-secondary-subtle"
@@ -121,7 +121,7 @@ User user = (User) session.getAttribute("user");
 									</ul>
 								</div>
 							</div>
-							<div class="ms-4 d-flex  adminkhoahoc-filter--gia ">
+							<div class="d-flex  adminkhoahoc-filter--gia ">
 								<p class="my-auto">Giá:</p>
 								<div class="dropdown dropdown-gia my-auto ms-2">
 									<button

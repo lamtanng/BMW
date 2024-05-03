@@ -261,6 +261,7 @@ img {
 
 																					<c:when test="${!isCompleted}">
 																						<input type="text"
+																							required
 																							enrollLessonId="${enrollLesson.enrrolId}"
 																							answerLessonId="${answerLesson.answerId}"
 																							class="answer-item__text form-control"
@@ -1311,7 +1312,14 @@ details.comment:not([open]) .comment-heading::after {
 	        contentType: "application/json",
 	        data:JSON.stringify(data),
 	        success: function(resp){
-	            console.log(resp);
+	        	console.log(resp);
+                // Check if the response indicates failure
+                if (resp.success === false) {
+                    // Show toast notification
+                    toastr.error('Please fill in the answer', 'Error');
+                    // Focus on the input field
+                    $(input).focus();
+                }
 	        },
 	        error:function(xhr){
 	            console.log(xhr);

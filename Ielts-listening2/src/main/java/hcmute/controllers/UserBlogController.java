@@ -37,10 +37,10 @@ public class UserBlogController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url = req.getRequestURI().toString();
+		resp.setHeader("X-Frame-Options", "DENY");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-
+		String url = req.getRequestURI().toString();
 		if (url.contains("blogs-page")) {
 			int page = Integer.parseInt(req.getParameter("page") == null ? "1" : req.getParameter("page"));
 			String searchStr = req.getParameter("search") == null ? "" : req.getParameter("search");
@@ -114,9 +114,10 @@ public class UserBlogController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url = req.getRequestURI().toString();
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
+		resp.setHeader("X-Frame-Options", "DENY");
+		String url = req.getRequestURI().toString();
 		HttpSession session = req.getSession();
 		if (url.contains("add-blog")) {
 			if (req.getPart("image").getSize() != 0) {

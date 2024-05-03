@@ -158,7 +158,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 				<div class="w-100 bg-white px-4 py-4 my-5 rounded-4 shadow-lg">
 					<div class="position-relative intro d-flex flex-row">
 
-						<img style="cursor: pointer;height: 80px;width: 100px;object-fit: cover;object-position: center;"
+						<img
+							style="cursor: pointer; height: 80px; width: 100px; object-fit: cover; object-position: center;"
 							onerror="setDefaultImage(this)"
 							src='<c:url value="/image?fname=topicIMG/${topicTest.image}"/>'
 							width="150px" />
@@ -340,8 +341,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 																	<input type="hidden" name="userId"
 																		value="${currentUser.userId }" /> <input
 																		type="hidden" name="testId"
-																		value="${mockTest.testId }" /> <input type="submit"
-																		class="btn btn-primary" value="Làm ngay" />
+																		value="${mockTest.testId }" /> <input type="hidden"
+																		class="csrfToken" name="csrfToken" value=""> <input
+																		type="submit" class="btn btn-primary" value="Làm ngay" />
 																</form>
 															</c:when>
 															<c:when test="${isDoing}">
@@ -361,8 +363,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 																	<input type="hidden" name="userId"
 																		value="${currentUser.userId }" /> <input
 																		type="hidden" name="testId"
-																		value="${mockTest.testId }" /> <input type="submit"
-																		class="btn btn-primary" value="Làm lại" />
+																		value="${mockTest.testId }" /> <input type="hidden"
+																		class="csrfToken" name="csrfToken" value=""> <input
+																		type="submit" class="btn btn-primary" value="Làm lại" />
 																</form>
 															</c:otherwise>
 														</c:choose>
@@ -454,6 +457,49 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 		</div>
 	</div>
 	<script>
+	
+	function generateToken(length) {
+		const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let token = '';
+		for (let i = 0; i < length; i++) {
+			const randomIndex = Math.floor(Math.random() * charset.length);
+			token += charset[randomIndex];
+		}
+		return token;
+	}
+
+	// Retrieve CSRF token from cookie and set it as the value of the hidden input field
+	const csrfTokenGlobal = generateToken(16);
+	console.log(csrfTokenGlobal);
+	if (csrfTokenGlobal) {
+		const elements = document.querySelectorAll('.csrfToken');
+	    elements.forEach(function(element) {
+	        element.value = csrfTokenGlobal;
+	    });
+	}
+
+	document.addEventListener("DOMContentLoaded", function() {
+	    const forms = document.querySelectorAll('form');
+
+	    forms.forEach(function(form) {
+	        form.addEventListener('submit', function(event) {
+	            const csrfToken = form.querySelector('.csrfToken').value; // Assuming each form has an element with the class 'csrfToken'
+	            console.log(csrfTokenGlobal, csrfToken)
+	            if (!isValidCsrfToken(csrfToken)) {
+	                event.preventDefault();
+	                console.error('CSRF token is invalid');
+	            } else {
+	                console.log('CSRF token is valid');
+	                // Proceed with form submission
+	                form.submit();
+	            }
+	        });
+	    });
+
+	    function isValidCsrfToken(token) {
+	        return token === csrfTokenGlobal;
+	    }
+	});
 		const params = new URLSearchParams(document.location.search);
 		let page = params.get("page") ? params.get("page"):'1';
 		

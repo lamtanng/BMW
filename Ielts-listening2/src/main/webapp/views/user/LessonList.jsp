@@ -58,7 +58,8 @@
 							<div class="d-flex align-items-center">
 
 								<form action="addToCart" method="post">
-									<input type="hidden" name="courseId"
+									<input type="hidden" class="csrfToken" name="csrfToken"
+										value=""> <input type="hidden" name="courseId"
 										value="${course.courseId }">
 									<button class="bookmark text-white" type="submit"
 										style="border: none; background: none;">
@@ -825,9 +826,9 @@
 								<div class="d-grid card-button">
 									<c:if test="${isBuy ==0 }">
 										<form action="order" method=get>
-
-											<input name="listCourseId" value="${course.courseId}"
-												id="listCourseId" class="d-none">
+											<input type="hidden" class="csrfToken" name="csrfToken"
+												value=""> <input name="listCourseId"
+												value="${course.courseId}" id="listCourseId" class="d-none">
 											<h3 class="text-primary text-center">
 
 												<fmt:formatNumber value="${course.cost}"
@@ -1032,7 +1033,8 @@
 														<c:when test="${user ne null}">
 															<!-- User is logged in, submit the form -->
 															<form action="addToCart" method="post">
-																<input type="hidden" name="courseId"
+																<input type="hidden" class="csrfToken" name="csrfToken"
+																	value=""> <input type="hidden" name="courseId"
 																	value="${i.courseId }">
 																<button type="submit"
 																	style="border: none; background: none;">
@@ -1100,6 +1102,48 @@
     </svg>
 	</div>
 	<script>
+		function generateToken(length) {
+			const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let token = '';
+			for (let i = 0; i < length; i++) {
+				const randomIndex = Math.floor(Math.random() * charset.length);
+				token += charset[randomIndex];
+			}
+			return token;
+		}
+
+		// Retrieve CSRF token from cookie and set it as the value of the hidden input field
+		const csrfTokenGlobal = generateToken(16);
+		console.log(csrfTokenGlobal);
+		if (csrfTokenGlobal) {
+			const elements = document.querySelectorAll('.csrfToken');
+			elements.forEach(function(element) {
+				element.value = csrfTokenGlobal;
+			});
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			const forms = document.querySelectorAll('form');
+
+			forms.forEach(function(form) {
+				form.addEventListener('submit', function(event) {
+					const csrfToken = form.querySelector('.csrfToken').value; // Assuming each form has an element with the class 'csrfToken'
+					console.log(csrfTokenGlobal, csrfToken)
+					if (!isValidCsrfToken(csrfToken)) {
+						event.preventDefault();
+						console.error('CSRF token is invalid');
+					} else {
+						console.log('CSRF token is valid');
+						// Proceed with form submission
+						form.submit();
+					}
+				});
+			});
+
+			function isValidCsrfToken(token) {
+				return token === csrfTokenGlobal;
+			}
+		});
 		let number = $
 		{
 			course.cost
