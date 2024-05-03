@@ -39,6 +39,7 @@ public class UserBlogController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		String url = req.getRequestURI().toString();
@@ -120,6 +121,7 @@ public class UserBlogController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 		HttpSession session = req.getSession();
 		if (url.contains("add-blog")) {

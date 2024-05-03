@@ -64,6 +64,7 @@ public class UserLessonController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		resp.setContentType("text/html");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
@@ -155,6 +156,7 @@ public class UserLessonController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 
 		if (url.contains("reply")) {

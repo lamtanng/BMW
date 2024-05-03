@@ -33,6 +33,7 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setHeader("X-Frame-Options", "DENY");
+		resp.setHeader("X-Content-Type-Options", "nosniff");
 		String url = req.getRequestURI().toString();
 
 		if (url.contains("home")) {
