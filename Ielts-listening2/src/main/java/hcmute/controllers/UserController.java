@@ -24,14 +24,15 @@ import hcmute.services.UserServiceImpl;
 @WebServlet(urlPatterns = { "/user/home" })
 public class UserController extends HttpServlet {
 
-
 	private static final long serialVersionUID = 1L;
 	IAccountServices accountService = new AccountServiceImpl();
 	IUserService userService = new UserServiceImpl();
 	IAdminKhoaHocService courseService = new AdminKhoaHocServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
+		resp.setHeader("X-Frame-Options", "DENY");
 		String url = req.getRequestURI().toString();
 
 		if (url.contains("home")) {
@@ -40,7 +41,6 @@ public class UserController extends HttpServlet {
 			rd.forward(req, resp);
 		}
 	}
-
 
 	private void FindIncreaseRate(HttpServletRequest req, HttpServletResponse resp) {
 		try {
@@ -54,6 +54,5 @@ public class UserController extends HttpServlet {
 		}
 
 	}
-	
 
 }

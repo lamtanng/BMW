@@ -63,6 +63,7 @@ public class UserLessonController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setHeader("X-Frame-Options", "DENY");
 		resp.setContentType("text/html");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
@@ -96,8 +97,7 @@ public class UserLessonController extends HttpServlet {
 				req.setAttribute("starUser", enrollLesson.getNumberOfStar());
 			else
 				req.setAttribute("starUser", 0);
-			
-			
+
 			// thêm danh sách câu hỏi
 			List<AnswerLesson> listAnswer = ansService.findAll();
 			req.setAttribute("enrollLesson", enrollLesson);
@@ -134,10 +134,10 @@ public class UserLessonController extends HttpServlet {
 
 		} else if (url.contains("completeEnrollLesson")) {
 			String enrollLessonId = req.getParameter("enrollLessonId");
-			
+
 			req.setAttribute("e", enrollLessonId);
-			//RequestDispatcher rd = req.getRequestDispatcher("/views/user/error404.jsp");
-			//rd.forward(req, resp);
+			// RequestDispatcher rd = req.getRequestDispatcher("/views/user/error404.jsp");
+			// rd.forward(req, resp);
 			enrService.completeTest(enrollLessonId);
 			String lessonId = req.getParameter("lessonId");
 			resp.sendRedirect(req.getContextPath() + "/user/lesson?id=" + lessonId);
@@ -154,7 +154,7 @@ public class UserLessonController extends HttpServlet {
 		resp.setContentType("text/html");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-
+		resp.setHeader("X-Frame-Options", "DENY");
 		String url = req.getRequestURI().toString();
 
 		if (url.contains("reply")) {
@@ -224,7 +224,7 @@ public class UserLessonController extends HttpServlet {
 				AnswerLessonUser answerLessonUser = httpUtil.toModel(AnswerLessonUser.class);
 				EnrrolLesson enrollLesson = enrService.findOneById(answerLessonUser.getEnrrolLesson().getEnrrolId());
 				AnswerLesson ansLesson = ansService.findOneById(answerLessonUser.getAnswerLesson().getAnswerId());
-				
+
 				if (enrollLesson != null && ansLesson != null) {
 					answerLessonUser.setEnrrolLesson(enrollLesson);
 					answerLessonUser.setAnswerLesson(ansLesson);
@@ -234,7 +234,7 @@ public class UserLessonController extends HttpServlet {
 				mapper.writeValue(resp.getOutputStream(), answerLessonUser);
 			} catch (Exception e) {
 				e.printStackTrace();
-				//resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				// resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			}
 		}
 	}

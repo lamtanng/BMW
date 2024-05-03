@@ -44,6 +44,7 @@ public class LuyenDeHomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setHeader("X-Frame-Options", "DENY");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user != null && enrollTestService.findEnTestProcess(user.getUserId()) != null) {
@@ -76,15 +77,12 @@ public class LuyenDeHomeController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		
+		resp.setHeader("X-Frame-Options", "DENY");
 
-		
 		HttpSession session = req.getSession(false);
 		if (session != null && session.getAttribute("user") != null) {
 			User user = (User) session.getAttribute("user");
-			
+
 			String testId = req.getParameter("testId");
 			EnrrolTest enrrolTest = new EnrrolTest();
 			enrrolTest.setEnrrolId("");
@@ -93,12 +91,13 @@ public class LuyenDeHomeController extends HttpServlet {
 			enrrolTest.setUsers(user);
 			MockTest mockTest = mockTestService.findById(testId);
 			enrrolTest.setMockTests(mockTest);
-			
+
 			if (enrollTestService.findByUserIdAndMockTestIdSoon(user.getUserId(), testId) != null
 					&& enrollTestService.findByUserIdAndMockTestIdSoon(user.getUserId(), testId).getScore() < 0) {
 				EnrrolTest checkEnTest = enrollTestService.findByUserIdAndMockTestIdSoon(user.getUserId(), testId);
 
-				resp.sendRedirect(req.getContextPath() + "/test/luyende_test?enrollTestId=" + checkEnTest.getEnrrolId());
+				resp.sendRedirect(
+						req.getContextPath() + "/test/luyende_test?enrollTestId=" + checkEnTest.getEnrrolId());
 
 			} else {
 				LocalDateTime date = LocalDateTime.now();
@@ -109,9 +108,10 @@ public class LuyenDeHomeController extends HttpServlet {
 				EnrrolTest enrrolTestGet = enrollTestService.findByUserIdAndMockTestIdAndDate(user.getUserId(), testId,
 						dateNow);
 
-				resp.sendRedirect(req.getContextPath() + "/test/luyende_test?enrollTestId=" + enrrolTestGet.getEnrrolId());
+				resp.sendRedirect(
+						req.getContextPath() + "/test/luyende_test?enrollTestId=" + enrrolTestGet.getEnrrolId());
 			}
-			
+
 		} else {
 			req.setAttribute("e", "Chưa đăng nhập !");
 			RequestDispatcher rd = req.getRequestDispatcher("/views/user/error404.jsp");

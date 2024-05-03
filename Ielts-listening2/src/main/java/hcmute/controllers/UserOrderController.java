@@ -53,7 +53,7 @@ public class UserOrderController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		resp.setHeader("X-Frame-Options", "DENY");
 		String url = req.getRequestURI().toString();
 		HttpSession session = req.getSession(false);
 		user = (User) session.getAttribute("user");
@@ -88,6 +88,7 @@ public class UserOrderController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setHeader("X-Frame-Options", "DENY");
 		String url = req.getRequestURI().toString();
 		IUserService userService = new UserServiceImpl();
 		ICartService cartService = new CartServiceImpl();
