@@ -172,18 +172,22 @@ public class AuthenticationControllers extends HttpServlet {
 			int minutes = 15;
 			Cookie cookie1 = new Cookie("username", userName);
 			cookie1.setMaxAge(minutes * 60);
+			cookie1.setHttpOnly(true);
 			resp.addCookie(cookie1);
 
 			Cookie cookie2 = new Cookie("email", email);
 			cookie2.setMaxAge(minutes * 60);
+			cookie2.setHttpOnly(true);
 			resp.addCookie(cookie2);
 
 			Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
 			cookie3.setMaxAge(minutes * 60);
+			cookie3.setHttpOnly(true);
 			resp.addCookie(cookie3);
 
 			Cookie cookie4 = new Cookie("password", passWord);
 			cookie4.setMaxAge(minutes * 60);
+			cookie4.setHttpOnly(true);
 			resp.addCookie(cookie4);
 
 			long createCodeAt = 0;
@@ -198,6 +202,7 @@ public class AuthenticationControllers extends HttpServlet {
 			if (createCodeAt == 0) {
 				createCodeAt = new Date().getTime();
 				Cookie cookie5 = new Cookie("createCodeAt", String.valueOf(createCodeAt));
+				cookie5.setHttpOnly(true);
 				cookie5.setMaxAge(minutes * 60);
 				resp.addCookie(cookie5);
 
@@ -206,6 +211,7 @@ public class AuthenticationControllers extends HttpServlet {
 			String turn = "5";
 			Cookie cookieTurn = new Cookie("turn", turn);
 			cookieTurn.setMaxAge(minutes * 60);
+			cookieTurn.setHttpOnly(true);
 			resp.addCookie(cookieTurn);
 
 			resp.sendRedirect(req.getContextPath() + "/authentication-verifycode");
@@ -346,21 +352,27 @@ public class AuthenticationControllers extends HttpServlet {
 		}
 		if (turn <= 0) {
 			Cookie cookie1 = new Cookie("username", "");
+			cookie1.setHttpOnly(true);
 			cookie1.setMaxAge(0);
 			resp.addCookie(cookie1);
 			Cookie cookie2 = new Cookie("email", "");
+			cookie2.setHttpOnly(true);
 			cookie2.setMaxAge(0);
 			resp.addCookie(cookie2);
 			Cookie cookie3 = new Cookie("code", "");
+			cookie3.setHttpOnly(true);
 			cookie3.setMaxAge(0);
 			resp.addCookie(cookie3);
 			Cookie cookie4 = new Cookie("password", "");
+			cookie4.setHttpOnly(true);
 			cookie4.setMaxAge(0);
 			resp.addCookie(cookie4);
 			Cookie cookie5 = new Cookie("createCodeAt", "");
+			cookie5.setHttpOnly(true);
 			cookie5.setMaxAge(0);
 			resp.addCookie(cookie5);
 			Cookie cookie6 = new Cookie("turn", "");
+			cookie6.setHttpOnly(true);
 			cookie6.setMaxAge(0);
 			resp.addCookie(cookie6);
 			req.setAttribute("message", "tạo tài khoản không thành công do otp nhập sai quá 5 lần!");
@@ -372,18 +384,23 @@ public class AuthenticationControllers extends HttpServlet {
 		if (otp.equals(code)) {
 			Cookie cookie1 = new Cookie("username", "");
 			cookie1.setMaxAge(0);
+			cookie1.setHttpOnly(true);
 			resp.addCookie(cookie1);
 			Cookie cookie2 = new Cookie("email", "");
 			cookie2.setMaxAge(0);
+			cookie2.setHttpOnly(true);
 			resp.addCookie(cookie2);
 			Cookie cookie3 = new Cookie("code", "");
 			cookie3.setMaxAge(0);
+			cookie3.setHttpOnly(true);
 			resp.addCookie(cookie3);
 			Cookie cookie4 = new Cookie("password", "");
 			cookie4.setMaxAge(0);
+			cookie4.setHttpOnly(true);
 			resp.addCookie(cookie4);
 			Cookie cookie5 = new Cookie("createCodeAt", "");
 			cookie5.setMaxAge(0);
+			cookie5.setHttpOnly(true);
 			resp.addCookie(cookie5);
 			Account account = new Account();
 			account.setUserName(username);
@@ -410,6 +427,7 @@ public class AuthenticationControllers extends HttpServlet {
 			turn = turn - 1;
 			Cookie cookieTurn = new Cookie("turn", String.valueOf(turn));
 			cookieTurn.setMaxAge(15 * 60); //
+			cookieTurn.setHttpOnly(true);
 			resp.addCookie(cookieTurn);
 
 			req.setAttribute("message", "Mã OTP chưa chính xác. Vui lòng nhập lại");
@@ -446,6 +464,8 @@ public class AuthenticationControllers extends HttpServlet {
 		Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
 		int age = (int) ((new Date().getTime() - time) / 1000);
 		cookie3.setMaxAge(15 * 60 - age);
+		cookie3.setHttpOnly(true);
+		cookie3.setHttpOnly(true);
 		resp.addCookie(cookie3);
 		req.setAttribute("message", "Gửi otp mới thành công. Hãy kiểm tra lại!");
 		req.getRequestDispatcher("views/authentication/verifycode.jsp").forward(req, resp);
