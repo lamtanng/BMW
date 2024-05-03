@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-policy" 
+	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
+	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'; frame-ancestors 'none'"/>
 <title>Insert title here</title>
 <!-- Add Bootstrap CSS Link -->
 <link rel="stylesheet"
