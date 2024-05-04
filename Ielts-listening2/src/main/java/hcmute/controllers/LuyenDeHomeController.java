@@ -62,7 +62,12 @@ public class LuyenDeHomeController extends HttpServlet {
 		String searchStr = request.getParameter("search") == null ? "" : request.getParameter("search");
 		String safeSearchStr = Paths.get(searchStr).normalize().toString();
 
-		int tab = Integer.parseInt(request.getParameter("tab") == null ? "1" : request.getParameter("tab"));
+		int tab = 0;
+		try {
+			tab = Integer.parseInt(request.getParameter("tab"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		int pagesize = 6;
 		List<TopicTest> allTopicTestList = topicTestService.findAll(safeSearchStr, tab);
 		List<TopicTest> topicTestList = topicTestService.findAll(page - 1, pagesize, safeSearchStr, tab);

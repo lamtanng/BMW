@@ -1,6 +1,7 @@
 package hcmute.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +58,21 @@ public class UserCourseController extends HttpServlet {
 
 		if (url.contains("course-detail")) {
 			String courseId = req.getParameter("courseId");
+			if (courseId.length() >= 255 || courseId.isEmpty()) {
+				req.setAttribute("e", "Khóa Học Không Tồn Tại");
+				RequestDispatcher rd = req.getRequestDispatcher("/views/user/error404.jsp");
+				rd.forward(req, resp);
+				return;
+			}
+
 			if (!courseId.equals("")) {
 				Course course = courseService.findById(courseId);
+				if (course == null) {
+					req.setAttribute("e", "Khóa Học Không Tồn Tại");
+					RequestDispatcher rd = req.getRequestDispatcher("/views/user/error404.jsp");
+					rd.forward(req, resp);
+					return;
+				}
 				HttpSession session = req.getSession();
 				User user = (User) session.getAttribute("user");
 				String userId;
