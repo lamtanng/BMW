@@ -2,21 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
-<!-- Add Bootstrap CSS Link -->
-<link nonce="rAnd0m" rel="stylesheet"
-	href="<c:url value="/assets/css/bootstrap.min.css"/>">
-<link nonce="rAnd0m" href="<c:url value="/assets/css/fontawesome.css"/>"
-	rel="stylesheet">
 
-<style>
-</style>
-</head>
 <body>
 	<div class="container-fluid  bg-light">
 		<div class="row justify-content-start pt-5 pt-lg-0">
@@ -231,4 +217,3 @@
 		
 	</script>
 </body>
-</html>

@@ -31,8 +31,8 @@
 	href="../assets/libs/glightbox/dist/css/glightbox.min.css" />
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/x-icon"
-	href="../assets/images/favicon/favicon.ico" />
+<!-- <link rel="shortcut icon" type="image/x-icon"
+	href="../assets/images/favicon/favicon.ico" /> -->
 
 <!-- darkmode js -->
 <script src="../assets/js/vendors/darkMode.js"></script>

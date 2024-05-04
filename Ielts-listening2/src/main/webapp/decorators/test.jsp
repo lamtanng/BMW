@@ -5,9 +5,6 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="Content-Security-policy" 
-	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
-	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'; frame-ancestors 'self'"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- chua duong dan cac file le rieng  -->
     <link href="<c:url value='/views/luyende/css/styleLuyenDeTest.css' />" rel="stylesheet" type="text/css"> 
