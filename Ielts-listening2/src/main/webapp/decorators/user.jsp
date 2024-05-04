@@ -11,54 +11,41 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="author" content="Codescandy" />
-<meta http-equiv="Content-Security-policy" 
-	content="default-src 'none';
-	script-src 'self' 'nonce-rAnd0m' https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
-					https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js
-					https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js
-					https://cdn.datatables.net/2.0.5/js/dataTables.min.js
-					https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js
-					https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css; 
-	connect-src 'self'; 
-	img-src 'self'; 
-	font-src 'self';
-	style-src 'self' 'nonce-rAnd0m';
-	form-action 'self'"/>
 
-<link nonce="rAnd0m" href="<c:url value='/views/luyende/css/styleLuyenDeTest.css' />"
+<link href="<c:url value='/views/luyende/css/styleLuyenDeTest.css' />"
 	rel="stylesheet" type="text/css">
-<link nonce="rAnd0m"
+<link
 	href='<c:url value="/assets/fonts/themify-icons/themify-icons.css" />'
 	rel="stylesheet" type="text/css">
 
-<link nonce="rAnd0m" rel="preconnect" href="https://fonts.googleapis.com">
-<link nonce="rAnd0m" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link nonce="rAnd0m"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
 	href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;300;400;700;900&family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
 
-<link nonce="rAnd0m" href='<c:url value="/stylecss/base/base.css" />' rel="stylesheet"
+<link href='<c:url value="/stylecss/base/base.css" />' rel="stylesheet"
 	type="text/css">
 
-<link nonce="rAnd0m" rel="stylesheet"
+<link rel="stylesheet"
 	href="../assets/libs/glightbox/dist/css/glightbox.min.css" />
 
 <!-- Favicon icon-->
-<link nonce="rAnd0m" rel="shortcut icon" type="image/x-icon"
+<link rel="shortcut icon" type="image/x-icon"
 	href="../assets/images/favicon/favicon.ico" />
 
 <!-- darkmode js -->
-<script nonce="rAnd0m" src="../assets/js/vendors/darkMode.js"></script>
+<script src="../assets/js/vendors/darkMode.js"></script>
 
 <!-- Libs CSS -->
-<link nonce="rAnd0m" href="../assets/fonts/feather/feather.css" rel="stylesheet" />
-<link nonce="rAnd0m" href="../assets/libs/bootstrap-icons/font/bootstrap-icons.min.css"
+<link href="../assets/fonts/feather/feather.css" rel="stylesheet" />
+<link href="../assets/libs/bootstrap-icons/font/bootstrap-icons.min.css"
 	rel="stylesheet" />
-<link nonce="rAnd0m" href="../assets/libs/simplebar/dist/simplebar.min.css"
+<link href="../assets/libs/simplebar/dist/simplebar.min.css"
 	rel="stylesheet" />
 
 <!-- Theme CSS -->
-<link nonce="rAnd0m" rel="stylesheet" href="../assets/css/theme.min.css" />
+<link rel="stylesheet" href="../assets/css/theme.min.css" />
 
 <title>Education - Geeks Bootstrap 5 Template</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -110,7 +97,7 @@
 
 					});
 </script>
-	<script nonce="rAnd0m" type="text/javascript">
+	<script type="text/javascript">
 		function setDefaultImage(img) {
 			img.onerror = null; // Ngăn chặn việc gọi lặp lại
 			img.src = "https://th.bing.com/th/id/OIP.xaADddZHWRoU3TbjEVGssQHaFj?rs=1&pid=ImgDetMain";
@@ -129,17 +116,17 @@
 
 	<!-- Scripts -->
 	<!-- Libs JS -->
-	<script nonce="rAnd0m" src="../assets/libs/%40popperjs/core/dist/umd/popper.min.js"></script>
-	<script nonce="rAnd0m" src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script nonce="rAnd0m" src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
+	<script src="../assets/libs/%40popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
 
 	<!-- Theme JS -->
-	<script nonce="rAnd0m" src="../assets/js/theme.min.js"></script>
+	<script src="../assets/js/theme.min.js"></script>
 
-	<script nonce="rAnd0m" src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-	<script nonce="rAnd0m" src="../assets/js/vendors/chart.js"></script>
-	<script nonce="rAnd0m" src="../assets/libs/flatpickr/dist/flatpickr.min.js"></script>
-	<script nonce="rAnd0m" src="../assets/js/vendors/flatpickr.js"></script>
+	<script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../assets/js/vendors/chart.js"></script>
+	<script src="../assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+	<script src="../assets/js/vendors/flatpickr.js"></script>
 
 
 

@@ -11,14 +11,7 @@ List<Cart> carts = (List<Cart>) session.getAttribute("cart");
 // Set the size of the cart list using JSTL
 pageContext.setAttribute("cartSize", carts != null ? carts.size() : 0);
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
 
-</head>
-<body>
 	<nav class="navbar navbar-expand-lg shadow-lg header-fixed">
 		<div class="container px-0">
 			<a class="navbar-brand" href="/Ielts-listening2/user/home"><img
@@ -210,6 +203,3 @@ pageContext.setAttribute("cartSize", carts != null ? carts.size() : 0);
 }
 </style>
 
-
-</body>
-</html>

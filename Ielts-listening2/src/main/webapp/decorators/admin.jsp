@@ -28,9 +28,6 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="author" content="Codescandy" />
-<meta http-equiv="Content-Security-policy" 
-	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
-	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'; frame-ancestors 'self'"/>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 

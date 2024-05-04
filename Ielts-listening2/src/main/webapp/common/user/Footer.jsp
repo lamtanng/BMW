@@ -1,11 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
+
 	<div style="padding-bottom: 50px; max-width: 1440px" class="d-flex flex-column container-fluid border-top">
 		
 		<div class="row pt-5">
@@ -51,5 +45,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
