@@ -89,41 +89,62 @@ public class AuthenticationControllers extends HttpServlet {
 			session.removeAttribute("user");
 			session.removeAttribute("role");
 			session.removeAttribute("cart");
+//			Cookie[] cookies = req.getCookies();
+//
+//			if (cookies != null) {
+//				Cookie cookie1 = new Cookie("username", "");
+//				cookie1.setMaxAge(0);
+//				cookie1.setPath("/");
+//
+//				cookie1.setSecure(true);	
+//				resp.addCookie(cookie1);
+//				Cookie cookie2 = new Cookie("email", "");
+//				cookie2.setMaxAge(0);
+//				cookie2.setPath("/");
+//				cookie2.setSecure(true);
+//				resp.addCookie(cookie2);
+//				Cookie cookie3 = new Cookie("code", "");
+//				cookie3.setMaxAge(0);
+//				cookie3.setPath("/");
+//				cookie3.setSecure(true);
+//				resp.addCookie(cookie3);
+//				Cookie cookie4 = new Cookie("password", "");
+//				cookie4.setMaxAge(0);
+//				cookie4.setPath("/");
+//				cookie4.setSecure(true);
+//				resp.addCookie(cookie4);
+//				Cookie cookie5 = new Cookie("createCodeAt", "");
+//				cookie5.setMaxAge(0);
+//				cookie5.setPath("/");
+//				cookie5.setSecure(true);
+//				resp.addCookie(cookie5);
+//				Cookie cookie6 = new Cookie("turn", "");
+//				cookie6.setMaxAge(0);
+//				cookie6.setPath("/");
+//				cookie6.setSecure(true);
+//				resp.addCookie(cookie6);
+//			}
+//			resp.sendRedirect(req.getContextPath() + "/user/home");
+
 			Cookie[] cookies = req.getCookies();
 
 			if (cookies != null) {
-				Cookie cookie1 = new Cookie("username", "");
-				cookie1.setMaxAge(0);
-				cookie1.setPath("/");
+				for (Cookie cookie : cookies) {
+					if (cookie.getName().equals("username") || cookie.getName().equals("email")
+							|| cookie.getName().equals("code") || cookie.getName().equals("password")
+							|| cookie.getName().equals("createCodeAt") || cookie.getName().equals("turn")) {
+						cookie.setMaxAge(0);
+						cookie.setPath("/");
+						cookie.setSecure(true);
+						resp.addCookie(cookie);
 
-				cookie1.setSecure(true);
-				resp.addCookie(cookie1);
-				Cookie cookie2 = new Cookie("email", "");
-				cookie2.setMaxAge(0);
-				cookie2.setPath("/");
-				cookie2.setSecure(true);
-				resp.addCookie(cookie2);
-				Cookie cookie3 = new Cookie("code", "");
-				cookie3.setMaxAge(0);
-				cookie3.setPath("/");
-				cookie3.setSecure(true);
-				resp.addCookie(cookie3);
-				Cookie cookie4 = new Cookie("password", "");
-				cookie4.setMaxAge(0);
-				cookie4.setPath("/");
-				cookie4.setSecure(true);
-				resp.addCookie(cookie4);
-				Cookie cookie5 = new Cookie("createCodeAt", "");
-				cookie5.setMaxAge(0);
-				cookie5.setPath("/");
-				cookie5.setSecure(true);
-				resp.addCookie(cookie5);
-				Cookie cookie6 = new Cookie("turn", "");
-				cookie6.setMaxAge(0);
-				cookie6.setPath("/");
-				cookie6.setSecure(true);
-				resp.addCookie(cookie6);
+						// Thiết lập SameSite attribute trực tiếp trong tiêu đề phản hồi
+						resp.setHeader("Set-Cookie",
+								cookie.getName() + "=; Max-Age=0; Path=/; Secure; SameSite=Lax");
+					}
+				}
 			}
+
 			resp.sendRedirect(req.getContextPath() + "/user/home");
 
 		} else if (url.contains("forgotpassword")) {
@@ -184,30 +205,77 @@ public class AuthenticationControllers extends HttpServlet {
 				rd.forward(req, resp);
 				return;
 			}
+//			int minutes = 15;
+//			Cookie cookie1 = new Cookie("username", userName);
+//			cookie1.setMaxAge(minutes * 60);
+//			cookie1.setHttpOnly(true);
+//			cookie1.setPath("/");
+//
+//			resp.addCookie(cookie1);
+//
+//			Cookie cookie2 = new Cookie("email", email);
+//			cookie2.setMaxAge(minutes * 60);
+//			cookie2.setHttpOnly(true);
+//			cookie2.setPath("/");
+//			resp.addCookie(cookie2);
+//
+//			Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
+//			cookie3.setMaxAge(minutes * 60);
+//			cookie3.setHttpOnly(true);
+//			cookie3.setPath("/");
+//			resp.addCookie(cookie3);
+//
+//			Cookie cookie4 = new Cookie("password", passWord);
+//			cookie4.setMaxAge(minutes * 60);
+//			cookie4.setHttpOnly(true);
+//			cookie4.setPath("/");
+//			resp.addCookie(cookie4);
+
 			int minutes = 15;
+			String sameSiteAttribute = "Lax"; // Hoặc "Strict" hoặc "Lax"
+
 			Cookie cookie1 = new Cookie("username", userName);
 			cookie1.setMaxAge(minutes * 60);
 			cookie1.setHttpOnly(true);
 			cookie1.setPath("/");
+			cookie1.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
 
+			String cookie1Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+					cookie1.getName(), cookie1.getValue(), cookie1.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie1Header);
 			resp.addCookie(cookie1);
 
 			Cookie cookie2 = new Cookie("email", email);
 			cookie2.setMaxAge(minutes * 60);
 			cookie2.setHttpOnly(true);
 			cookie2.setPath("/");
+			cookie2.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
+
+			String cookie2Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+					cookie2.getName(), cookie2.getValue(), cookie2.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie2Header);
 			resp.addCookie(cookie2);
 
 			Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
 			cookie3.setMaxAge(minutes * 60);
 			cookie3.setHttpOnly(true);
 			cookie3.setPath("/");
+			cookie3.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
+
+			String cookie3Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+					cookie3.getName(), cookie3.getValue(), cookie3.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie3Header);
 			resp.addCookie(cookie3);
 
 			Cookie cookie4 = new Cookie("password", passWord);
 			cookie4.setMaxAge(minutes * 60);
 			cookie4.setHttpOnly(true);
 			cookie4.setPath("/");
+			cookie4.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
+
+			String cookie4Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+					cookie4.getName(), cookie4.getValue(), cookie4.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie4Header);
 			resp.addCookie(cookie4);
 
 			long createCodeAt = 0;
@@ -221,21 +289,41 @@ public class AuthenticationControllers extends HttpServlet {
 			}
 			if (createCodeAt == 0) {
 				createCodeAt = new Date().getTime();
+//				Cookie cookie5 = new Cookie("createCodeAt", String.valueOf(createCodeAt));
+//				cookie5.setHttpOnly(true);
+//				cookie5.setPath("/");
+//				cookie5.setMaxAge(minutes * 60);
+//				cookie5.setSecure(true);
+//				resp.addCookie(cookie5);
 				Cookie cookie5 = new Cookie("createCodeAt", String.valueOf(createCodeAt));
+				cookie5.setMaxAge(minutes * 60);
 				cookie5.setHttpOnly(true);
 				cookie5.setPath("/");
-				cookie5.setMaxAge(minutes * 60);
-				cookie5.setSecure(true);
+				cookie5.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
+
+				String cookie5Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+						cookie5.getName(), cookie5.getValue(), cookie5.getMaxAge(), sameSiteAttribute);
+				resp.addHeader("Set-Cookie", cookie5Header);
 				resp.addCookie(cookie5);
 
 			}
 
 			String turn = "5";
+//			Cookie cookieTurn = new Cookie("turn", turn);
+//			cookieTurn.setSecure(true);
+//			cookieTurn.setMaxAge(minutes * 60);
+//			cookieTurn.setHttpOnly(true);
+//			cookieTurn.setPath("/");
+//			resp.addCookie(cookieTurn);
 			Cookie cookieTurn = new Cookie("turn", turn);
-			cookieTurn.setSecure(true);
 			cookieTurn.setMaxAge(minutes * 60);
 			cookieTurn.setHttpOnly(true);
 			cookieTurn.setPath("/");
+			cookieTurn.setSecure(true); // Điều này là tùy chọn, nếu bạn muốn sử dụng Secure attribute
+
+			String cookieTurnHeader = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=%s",
+					cookieTurn.getName(), cookieTurn.getValue(), cookieTurn.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookieTurnHeader);
 			resp.addCookie(cookieTurn);
 
 			resp.sendRedirect(req.getContextPath() + "/authentication-verifycode");
@@ -375,42 +463,112 @@ public class AuthenticationControllers extends HttpServlet {
 			}
 		}
 		if (turn <= 0) {
+//			Cookie cookie1 = new Cookie("username", "");
+//			cookie1.setHttpOnly(true);
+//			cookie1.setMaxAge(0);
+//			cookie1.setPath("/");
+//			cookie1.setSecure(true);
+//			resp.addCookie(cookie1);
+//			Cookie cookie2 = new Cookie("email", "");
+//			cookie2.setHttpOnly(true);
+//			cookie2.setMaxAge(0);
+//			cookie2.setPath("/");
+//			cookie2.setSecure(true);
+//			resp.addCookie(cookie2);
+//			Cookie cookie3 = new Cookie("code", "");
+//			cookie3.setHttpOnly(true);
+//			cookie3.setMaxAge(0);
+//			cookie3.setPath("/");
+//			cookie3.setSecure(true);
+//			resp.addCookie(cookie3);
+//			Cookie cookie4 = new Cookie("password", "");
+//			cookie4.setHttpOnly(true);
+//			cookie4.setMaxAge(0);
+//			cookie4.setPath("/");
+//			cookie4.setSecure(true);
+//			resp.addCookie(cookie4);
+//			Cookie cookie5 = new Cookie("createCodeAt", "");
+//			cookie5.setHttpOnly(true);
+//			cookie5.setMaxAge(0);
+//			cookie5.setPath("/");
+//			cookie5.setSecure(true);
+//			resp.addCookie(cookie5);
+//			Cookie cookie6 = new Cookie("turn", "");
+//			cookie6.setHttpOnly(true);
+//			cookie6.setMaxAge(0);
+//			cookie6.setPath("/");
+//			cookie6.setSecure(true);
+//			resp.addCookie(cookie6);
+
+			String sameSiteAttribute = "SameSite=Lax"; // Hoặc "SameSite=Lax", "SameSite=None" tùy thuộc vào yêu cầu
+															// của bạn
+
 			Cookie cookie1 = new Cookie("username", "");
 			cookie1.setHttpOnly(true);
 			cookie1.setMaxAge(0);
 			cookie1.setPath("/");
 			cookie1.setSecure(true);
+
+			String cookie1Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie1.getName(),
+					cookie1.getValue(), cookie1.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie1Header);
 			resp.addCookie(cookie1);
+
 			Cookie cookie2 = new Cookie("email", "");
 			cookie2.setHttpOnly(true);
 			cookie2.setMaxAge(0);
 			cookie2.setPath("/");
 			cookie2.setSecure(true);
+
+			String cookie2Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie2.getName(),
+					cookie2.getValue(), cookie2.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie2Header);
 			resp.addCookie(cookie2);
+
 			Cookie cookie3 = new Cookie("code", "");
 			cookie3.setHttpOnly(true);
 			cookie3.setMaxAge(0);
 			cookie3.setPath("/");
 			cookie3.setSecure(true);
+
+			String cookie3Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie3.getName(),
+					cookie3.getValue(), cookie3.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie3Header);
 			resp.addCookie(cookie3);
+
 			Cookie cookie4 = new Cookie("password", "");
 			cookie4.setHttpOnly(true);
 			cookie4.setMaxAge(0);
 			cookie4.setPath("/");
 			cookie4.setSecure(true);
+
+			String cookie4Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie4.getName(),
+					cookie4.getValue(), cookie4.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie4Header);
 			resp.addCookie(cookie4);
+
 			Cookie cookie5 = new Cookie("createCodeAt", "");
 			cookie5.setHttpOnly(true);
 			cookie5.setMaxAge(0);
 			cookie5.setPath("/");
 			cookie5.setSecure(true);
+
+			String cookie5Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie5.getName(),
+					cookie5.getValue(), cookie5.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie5Header);
 			resp.addCookie(cookie5);
+
 			Cookie cookie6 = new Cookie("turn", "");
 			cookie6.setHttpOnly(true);
 			cookie6.setMaxAge(0);
 			cookie6.setPath("/");
 			cookie6.setSecure(true);
+
+			String cookie6Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie6.getName(),
+					cookie6.getValue(), cookie6.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie6Header);
 			resp.addCookie(cookie6);
+
 			req.setAttribute("message", "tạo tài khoản không thành công do otp nhập sai quá 5 lần!");
 			RequestDispatcher rd = req.getRequestDispatcher("/views/authentication/signUp.jsp");
 			rd.forward(req, resp);
@@ -418,31 +576,93 @@ public class AuthenticationControllers extends HttpServlet {
 		}
 
 		if (otp.equals(code)) {
+//			Cookie cookie1 = new Cookie("username", "");
+//			cookie1.setMaxAge(0);
+//			cookie1.setHttpOnly(true);
+//			cookie1.setPath("/");
+//			resp.addCookie(cookie1);
+			String sameSiteAttribute = "SameSite=Lax"; // Hoặc "SameSite=Lax", "SameSite=None" tùy thuộc vào yêu cầu
+															// của bạn
+
 			Cookie cookie1 = new Cookie("username", "");
 			cookie1.setMaxAge(0);
 			cookie1.setHttpOnly(true);
 			cookie1.setPath("/");
+			cookie1.setSecure(true);
+
+			String cookie1Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie1.getName(),
+					cookie1.getValue(), cookie1.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie1Header);
 			resp.addCookie(cookie1);
+
+//			Cookie cookie2 = new Cookie("email", "");
+//			cookie2.setMaxAge(0);
+//			cookie2.setHttpOnly(true);
+//			cookie2.setPath("/");
+//			resp.addCookie(cookie2);
+
 			Cookie cookie2 = new Cookie("email", "");
 			cookie2.setMaxAge(0);
 			cookie2.setHttpOnly(true);
 			cookie2.setPath("/");
+			cookie2.setSecure(true);
+
+			String cookie2Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie2.getName(),
+					cookie2.getValue(), cookie2.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie2Header);
 			resp.addCookie(cookie2);
+
+//			Cookie cookie3 = new Cookie("code", "");
+//			cookie3.setMaxAge(0);
+//			cookie3.setHttpOnly(true);
+//			cookie3.setPath("/");
+//			resp.addCookie(cookie3);
+
 			Cookie cookie3 = new Cookie("code", "");
 			cookie3.setMaxAge(0);
 			cookie3.setHttpOnly(true);
 			cookie3.setPath("/");
+			cookie3.setSecure(true);
+
+			String cookie3Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie3.getName(),
+					cookie3.getValue(), cookie3.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie3Header);
 			resp.addCookie(cookie3);
+
+//			Cookie cookie4 = new Cookie("password", "");
+//			cookie4.setMaxAge(0);
+//			cookie4.setHttpOnly(true);
+//			cookie4.setPath("/");
+//			resp.addCookie(cookie4);
+
 			Cookie cookie4 = new Cookie("password", "");
 			cookie4.setMaxAge(0);
 			cookie4.setHttpOnly(true);
 			cookie4.setPath("/");
+			cookie4.setSecure(true);
+
+			String cookie4Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie4.getName(),
+					cookie4.getValue(), cookie4.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie4Header);
 			resp.addCookie(cookie4);
+
+//			Cookie cookie5 = new Cookie("createCodeAt", "");
+//			cookie5.setMaxAge(0);
+//			cookie5.setHttpOnly(true);
+//			cookie5.setPath("/");
+//			resp.addCookie(cookie5);
+
 			Cookie cookie5 = new Cookie("createCodeAt", "");
 			cookie5.setMaxAge(0);
 			cookie5.setHttpOnly(true);
 			cookie5.setPath("/");
+			cookie5.setSecure(true);
+
+			String cookie5Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s", cookie5.getName(),
+					cookie5.getValue(), cookie5.getMaxAge(), sameSiteAttribute);
+			resp.addHeader("Set-Cookie", cookie5Header);
 			resp.addCookie(cookie5);
+
 			Account account = new Account();
 			account.setUserName(username);
 			account.setPassWord(password);
@@ -502,14 +722,29 @@ public class AuthenticationControllers extends HttpServlet {
 			req.getRequestDispatcher("views/authentication/verifycode.jsp").forward(req, resp);
 			return;
 		}
+//
+//		Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
+//		int age = (int) ((new Date().getTime() - time) / 1000);
+//		cookie3.setMaxAge(15 * 60 - age);
+//		cookie3.setHttpOnly(true);
+//		cookie3.setHttpOnly(true);
+//		cookie3.setPath("/");
+//		resp.addCookie(cookie3);
+		
+		String sameSiteAttribute = "SameSite=Lax"; // Hoặc "SameSite=Lax", "SameSite=None" tùy thuộc vào yêu cầu của bạn
 
-		Cookie cookie3 = new Cookie("code", PasswordEncryptor.encryptPassword(code));
+		Cookie cookie3 = new Cookie("code",  PasswordEncryptor.encryptPassword(code));
 		int age = (int) ((new Date().getTime() - time) / 1000);
 		cookie3.setMaxAge(15 * 60 - age);
 		cookie3.setHttpOnly(true);
-		cookie3.setHttpOnly(true);
 		cookie3.setPath("/");
+		cookie3.setSecure(true);
+
+		String cookie3Header = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; %s",
+		        cookie3.getName(), cookie3.getValue(), cookie3.getMaxAge(), sameSiteAttribute);
+		resp.addHeader("Set-Cookie", cookie3Header);
 		resp.addCookie(cookie3);
+		
 		req.setAttribute("message", "Gửi otp mới thành công. Hãy kiểm tra lại!");
 		req.getRequestDispatcher("views/authentication/verifycode.jsp").forward(req, resp);
 	}
