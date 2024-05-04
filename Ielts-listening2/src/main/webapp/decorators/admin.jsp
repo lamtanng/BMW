@@ -5,7 +5,9 @@
 <html>
 <head>
 
-<link href="../assets/css/fontawesome.css" rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +28,6 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <meta name="author" content="Codescandy" />
-<meta http-equiv="Content-Security-policy"
-	content="default-src 'none'; script-src 'self'; connect-src 'self'; 
-	img-src 'self'; style-src 'self';base-uri 'self';form-action 'self'; frame-ancestors 'self'" />
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 
@@ -46,10 +45,20 @@
 
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../assets/css/theme.min.css" />
-<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
-<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/assets/js/popper.min.js"/>"></script>
-<script src="<c:url value="/assets/js/datatables.min.js"/>"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
 <script>
 	$(document)
 			.ready(
@@ -86,12 +95,12 @@
 
 					});
 </script>
-<script type="text/javascript">
-	function setDefaultImage(img) {
-		img.onerror = null; // Ngăn chặn việc gọi lặp lại
-		img.src = "https://th.bing.com/th/id/OIP.xaADddZHWRoU3TbjEVGssQHaFj?rs=1&pid=ImgDetMain";
-	}
-</script>
+	<script type="text/javascript">
+		function setDefaultImage(img) {
+			img.onerror = null; // Ngăn chặn việc gọi lặp lại
+			img.src = "https://th.bing.com/th/id/OIP.xaADddZHWRoU3TbjEVGssQHaFj?rs=1&pid=ImgDetMain";
+		}
+	</script>
 <title></title>
 </head>
 

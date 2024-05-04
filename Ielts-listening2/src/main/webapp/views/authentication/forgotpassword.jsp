@@ -8,10 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <!-- Add Bootstrap CSS Link -->
-<link nonce="rAnd0m" rel="stylesheet"
-	href="<c:url value="/assets/css/bootstrap.min.css"/>">
-<link nonce="rAnd0m" href="<c:url value="/assets/css/fontawesome.css"/>"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/font-awesome.css" />
 
 <style>
 </style>
@@ -49,10 +49,8 @@
 											type="text" placeholder="Nhập email">
 									</div>
 								</div>
-								<input type="hidden" id="csrfToken" name="csrfToken" value="">
 								<div class="mb-4">
-									<button class="btn btn-primary fw-bold w-100" type="submit">Nhận
-										Mật Khẩu</button>
+									<button class="btn btn-primary fw-bold w-100" type="submit">Nhận Mật Khẩu</button>
 								</div>
 							</form>
 						</div>
@@ -63,48 +61,10 @@
 	</div>
 
 	<!-- Add Bootstrap JS and Popper.js -->
-
-	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
-	<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 	<script>
-		function generateToken(length) {
-			const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-			let token = '';
-			for (let i = 0; i < length; i++) {
-				const randomIndex = Math.floor(Math.random() * charset.length);
-				token += charset[randomIndex];
-			}
-			return token;
-		}
-
-		// Retrieve CSRF token from cookie and set it as the value of the hidden input field
-		const csrfTokenGlobal = generateToken(16);
-		console.log(csrfTokenGlobal);
-		if (csrfTokenGlobal) {
-			document.getElementById('csrfToken').value = csrfTokenGlobal;
-		}
-
-		document.addEventListener("DOMContentLoaded", function() {
-			const form = document.querySelector('form');
-
-			form.addEventListener('submit', function(event) {
-				const csrfToken = document.getElementById('csrfToken').value;
-				console.log(csrfTokenGlobal, csrfToken)
-				if (!isValidCsrfToken(csrfToken)) {
-					event.preventDefault();
-					console.error('CSRF token is invalid');
-
-				} else {
-					console.log('CSRF token is valid');
-					// Proceed with form submission
-					form.submit();
-				}
-			});
-			function isValidCsrfToken(token) {
-				return token === csrfTokenGlobal
-			}
-		});
-
 		const message = "${message}";
 		if (message && message.trim() !== "") {
 			// If the message is not empty, show it as a toast
