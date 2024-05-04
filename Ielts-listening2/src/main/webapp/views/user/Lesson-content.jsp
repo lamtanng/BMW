@@ -101,12 +101,15 @@ img {
 						<div
 							class="rounded-3 position-relative w-100 d-block overflow-hidden p-0"
 							style="height: 600px">
-							
-								<video class="position-absolute top-0 end-0 start-0 end-0 bottom-0 h-100 w-100"
+
+							<video
+								class="position-absolute top-0 end-0 start-0 end-0 bottom-0 h-100 w-100"
 								width="560" height="315" controls>
-									<source src="<c:url value='/image?fname=${folder}/${lesson.video}'/>" type="video/mp4">
-									
-								</video>
+								<source
+									src="<c:url value='/image?fname=${folder}/${lesson.video}'/>"
+									type="video/mp4">
+
+							</video>
 						</div>
 					</div>
 				</div>
@@ -260,8 +263,7 @@ img {
 																				<c:choose>
 
 																					<c:when test="${!isCompleted}">
-																						<input type="text"
-																							required
+																						<input type="text" required
 																							enrollLessonId="${enrollLesson.enrrolId}"
 																							answerLessonId="${answerLesson.answerId}"
 																							class="answer-item__text form-control"
@@ -343,7 +345,7 @@ img {
 											</div>
 
 										</div>
-										
+
 										<!-- review -->
 										<div class="tab-pane fade" id="review" role="tabpanel"
 											aria-labelledby="review-tab">
@@ -352,49 +354,48 @@ img {
 												<div class="row align-items-center">
 													<div class="col-auto text-center">
 														<h3 class="display-2 fw-bold" id="avg-star-result">1</h3>
- 														<span class="fs-6"> 
- 														
-															<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light star-avg-rate"
-																	viewBox="0 0 16 16">
+														<span class="fs-6"> <svg
+																xmlns="http://www.w3.org/2000/svg" width="12"
+																height="12" fill="currentColor"
+																class="bi bi-star-fill text-light star-avg-rate"
+																viewBox="0 0 16 16">
 						                                            <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+																	d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+						                                            </path>
+					                                        	</svg> <svg
+																xmlns="http://www.w3.org/2000/svg" width="12"
+																height="12" fill="currentColor"
+																class="bi bi-star-fill text-light star-avg-rate"
+																viewBox="0 0 16 16">
+						                                            <path
+																	d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+						                                            </path>
+					                                        	</svg> <svg
+																xmlns="http://www.w3.org/2000/svg" width="12"
+																height="12" fill="currentColor"
+																class="bi bi-star-fill text-light star-avg-rate"
+																viewBox="0 0 16 16">
+						                                            <path
+																	d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+						                                            </path>
+					                                        	</svg> <svg
+																xmlns="http://www.w3.org/2000/svg" width="12"
+																height="12" fill="currentColor"
+																class="bi bi-star-fill text-light star-avg-rate"
+																viewBox="0 0 16 16">
+						                                            <path
+																	d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+						                                            </path>
+					                                        	</svg> <svg
+																xmlns="http://www.w3.org/2000/svg" width="12"
+																height="12" fill="currentColor"
+																class="bi bi-star-fill text-light star-avg-rate"
+																viewBox="0 0 16 16">
+						                                            <path
+																	d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
 						                                            </path>
 					                                        	</svg>
-					                                        	<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light star-avg-rate"
-																	viewBox="0 0 16 16">
-						                                            <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-						                                            </path>
-					                                        	</svg>
-					                                        	<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light star-avg-rate"
-																	viewBox="0 0 16 16">
-						                                            <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-						                                            </path>
-					                                        	</svg>
-					                                        	<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light star-avg-rate"
-																	viewBox="0 0 16 16">
-						                                            <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-						                                            </path>
-					                                        	</svg>
-					                                        	<svg xmlns="http://www.w3.org/2000/svg" width="12"
-																	height="12" fill="currentColor"
-																	class="bi bi-star-fill text-light star-avg-rate"
-																	viewBox="0 0 16 16">
-						                                            <path
-																		d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
-						                                            </path>
-					                                        	</svg>
-					                                        	
+
 														</span>
 														<p class="mb-0 fs-6">(Dựa trên ${people} đánh giá)</p>
 													</div>
@@ -751,7 +752,7 @@ img {
 
 
 
-																					<p  class="text-break rating-content ">${cmt.comment}</p>
+																					<p class="text-break rating-content ">${cmt.comment}</p>
 
 
 																				</div>
@@ -1183,7 +1184,7 @@ details.comment:not([open]) .comment-heading::after {
 	-webkit-text-fill-color: transparent;
 }
 </style>
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function avgStar(){
 		for(var t of arrStar){
@@ -1205,8 +1206,9 @@ details.comment:not([open]) .comment-heading::after {
 		$(s[i]).addClass("text-warning");
 	}
 </script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+
+	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
+	<script>
 
     // hide/show form repcomment
     document.addEventListener(

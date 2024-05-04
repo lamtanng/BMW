@@ -14,14 +14,17 @@
 			<div class="container-xxl">
 				<div class="row">
 					<div class="col-3 d-flex justify-content-start">
-						<a href='<c:url value="/user/luyen-de-home"></c:url>' class="btn-exit"> <i class="ti-angle-left me-1"></i>
+						<a href='<c:url value="/user/luyen-de-home"></c:url>'
+							class="btn-exit"> <i class="ti-angle-left me-1"></i>
 							<h6>Trở về</h6>
-						</a> 
+						</a>
 					</div>
 					<div class="col-6 d-flex justify-content-center">
 						<div class="test-time">
 							<i class="ti-alarm-clock me-2"></i>
-							<h6 class="timer" valuenow="${currentTime}" valuemax="${endingTime}" enrollTestId="${enrollTest.enrrolId}">00 : 00 : 00</h6>
+							<h6 class="timer" valuenow="${currentTime}"
+								valuemax="${endingTime}" enrollTestId="${enrollTest.enrrolId}">00
+								: 00 : 00</h6>
 						</div>
 						<h3 class="d-flex align-items-center">CAM 18 - TEST 2</h3>
 					</div>
@@ -67,8 +70,7 @@
 								<i class="next10s-btn ti-arrow-circle-right"></i>
 							</div>
 						</div>
-						<input type="range" value="0"
-							class="progress-time w-100 mt-3 h-2">
+						<input type="range" value="0" class="progress-time w-100 mt-3 h-2">
 						<div class="mt-2 d-flex">
 							<div
 								class="text-start d-flex justify-content-start align-items-center">
@@ -92,7 +94,9 @@
 						<c:choose>
 							<c:when test="${currentPart.audio.substring(0,4)!='http'}">
 								<audio class="audio">
-									<source src='<c:url value="/audio?fname=topicAudio/${currentPart.audio}"></c:url>' type="audio/mpeg">
+									<source
+										src='<c:url value="/audio?fname=topicAudio/${currentPart.audio}"></c:url>'
+										type="audio/mpeg">
 								</audio>
 							</c:when>
 							<c:otherwise>
@@ -120,55 +124,68 @@
 							</div>
 							<ul class="mt-4 d-flex flex-wrap justify-content-center">
 								<c:set var="startNumber" value="${0}"></c:set>
-								<c:forEach items="${enrollTest.mockTests.listeningParts}" var="listeningPart">
-									<c:forEach items="${listeningPart.answerTests}" var="answerTest" varStatus="status">
+								<c:forEach items="${enrollTest.mockTests.listeningParts}"
+									var="listeningPart">
+									<c:forEach items="${listeningPart.answerTests}"
+										var="answerTest" varStatus="status">
 										<c:set var="isCorrect" value="${false}" />
 										<c:if test="${not empty isCompleted}">
 											<c:forEach items="${enrollTest.answerUsers}" var="answerUser">
-												<c:if test="${answerTest.answerId.equals(answerUser.answerTest.answerId) 
+												<c:if
+													test="${answerTest.answerId.equals(answerUser.answerTest.answerId) 
 												and answerTest.answerKey.equals(answerUser.answer)}">
-													<c:set var="isCorrect" value="${true}"/>
+													<c:set var="isCorrect" value="${true}" />
 												</c:if>
 											</c:forEach>
 										</c:if>
-										
-										
+
+
 										<c:set var="isAnswered" value="${false}" />
 										<c:if test="${empty isCompleted}">
 											<c:forEach items="${enrollTest.answerUsers}" var="answerUser">
-												<c:if test="${answerUser.answerTest.answerId.equals(answerTest.answerId) 
+												<c:if
+													test="${answerUser.answerTest.answerId.equals(answerTest.answerId) 
 												and (not empty answerUser.answer)}">
 													<c:set var="isAnswered" value="${true}" />
 												</c:if>
 											</c:forEach>
 										</c:if>
-										
+
 										<c:choose>
-										    <c:when test="${empty isCompleted and isAnswered}">
-										    	<li><a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
-										    	 class="number-question-item answered" enrollTestId="${enrollTest.enrrolId}"
-										    	 answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
-										    </c:when>
-										    <c:when test="${not empty isCompleted and isCorrect}">
-										    	<li><a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
-										    	 class="number-question-item correct" enrollTestId="${enrollTest.enrrolId}"
-										    	 answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
-										    </c:when>
-										    <c:when test="${not empty isCompleted and not isCorrect}">
-										    	<li><a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
-										    	 class="number-question-item incorrect" enrollTestId="${enrollTest.enrrolId}"
-										    	 answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
-										    </c:when>
-										    <c:otherwise>
-										        <li><a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
-										         class="number-question-item" enrollTestId="${enrollTest.enrrolId}" 
-										         answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
-										    </c:otherwise>
+											<c:when test="${empty isCompleted and isAnswered}">
+												<li><a
+													href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
+													class="number-question-item answered"
+													enrollTestId="${enrollTest.enrrolId}"
+													answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
+											</c:when>
+											<c:when test="${not empty isCompleted and isCorrect}">
+												<li><a
+													href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
+													class="number-question-item correct"
+													enrollTestId="${enrollTest.enrrolId}"
+													answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
+											</c:when>
+											<c:when test="${not empty isCompleted and not isCorrect}">
+												<li><a
+													href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
+													class="number-question-item incorrect"
+													enrollTestId="${enrollTest.enrrolId}"
+													answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a
+													href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${listeningPart.partId}"></c:url>'
+													class="number-question-item"
+													enrollTestId="${enrollTest.enrrolId}"
+													answerTestId="${answerTest.answerId}">${startNumber + answerTest.number}</a></li>
+											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<c:set var="startNumber" value="${startNumber + listeningPart.answerTests.size()}"></c:set>
+									<c:set var="startNumber"
+										value="${startNumber + listeningPart.answerTests.size()}"></c:set>
 								</c:forEach>
-                            </ul>
+							</ul>
 						</div>
 					</div>
 					<c:if test="${not empty isCompleted }">
@@ -178,21 +195,21 @@
 								<h6>Kết quả</h6>
 							</div>
 							<div class="dropdown mt-3">
-							  <button type="button" class="btn btn-outline-primary dropdown-toggle w-100" data-bs-toggle="dropdown">
-							    Lịch sử làm bài
-							  </button>
-							  
-							  <ul class="dropdown-menu w-100">
-							  	<c:forEach items="${listHistoryTest}" var="enrollTest">
-							  		<li><a class="dropdown-item " href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId }"></c:url>'>
-							  			Thời điểm: 
-							  			<fmt:formatDate value="${enrollTest.enrrollmentDate}" pattern="hh:mm - dd/MM/yyyy"/>
-							  			
-							  			<span class="badge bg-primary rounded-pill float-end">${enrollTest.score}</span>
-							  		</a>
-							  		</li>
-							  	</c:forEach>
-							  </ul>
+								<button type="button"
+									class="btn btn-outline-primary dropdown-toggle w-100"
+									data-bs-toggle="dropdown">Lịch sử làm bài</button>
+
+								<ul class="dropdown-menu w-100">
+									<c:forEach items="${listHistoryTest}" var="enrollTest">
+										<li><a class="dropdown-item "
+											href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId }"></c:url>'>
+												Thời điểm: <fmt:formatDate
+													value="${enrollTest.enrrollmentDate}"
+													pattern="hh:mm - dd/MM/yyyy" /> <span
+												class="badge bg-primary rounded-pill float-end">${enrollTest.score}</span>
+										</a></li>
+									</c:forEach>
+								</ul>
 							</div>
 							<div class="test-score mt-3">
 								<div class="d-flex align-items-center">
@@ -201,7 +218,8 @@
 										alt="">
 									<div>
 										<h3 class="test-score-value">${enrollTest.score}</h3>
-										<span>${numberOfCorrectAnswers} đáp án đúng / ${numberOfQuestTion} câu hỏi</span>
+										<span>${numberOfCorrectAnswers} đáp án đúng /
+											${numberOfQuestTion} câu hỏi</span>
 									</div>
 								</div>
 							</div>
@@ -221,9 +239,11 @@
 							<div class="col d-flex justify-content-start">
 								<c:choose>
 									<c:when test="${not empty prevPart}">
-										<a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${prevPart}"></c:url>'
-										 class="prev-part d-flex">
-											<div class="icon me-2 d-flex align-items-center justify-content-center">
+										<a
+											href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${prevPart}"></c:url>'
+											class="prev-part d-flex">
+											<div
+												class="icon me-2 d-flex align-items-center justify-content-center">
 												<i class="ti-arrow-left"></i>
 											</div>
 											<h6>Phần trước</h6>
@@ -231,7 +251,8 @@
 									</c:when>
 									<c:otherwise>
 										<a href="#" class="prev-part disabled d-flex">
-											<div class="icon me-2 d-flex align-items-center justify-content-center">
+											<div
+												class="icon me-2 d-flex align-items-center justify-content-center">
 												<i class="ti-arrow-left"></i>
 											</div>
 											<h6>Phần trước</h6>
@@ -246,10 +267,12 @@
 							<div class="col d-flex justify-content-end">
 								<c:choose>
 									<c:when test="${not empty nextPart}">
-										<a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${nextPart}"></c:url>' 
-										class="next-part d-flex">
+										<a
+											href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${nextPart}"></c:url>'
+											class="next-part d-flex">
 											<h6>Phần sau</h6>
-											<div class="icon ms-2 d-flex align-items-center justify-content-center">
+											<div
+												class="icon ms-2 d-flex align-items-center justify-content-center">
 												<i class="ti-arrow-right"></i>
 											</div>
 										</a>
@@ -257,7 +280,8 @@
 									<c:otherwise>
 										<a href="#" class="next-part disabled d-flex">
 											<h6>Phần sau</h6>
-											<div class="icon ms-2 d-flex align-items-center justify-content-center">
+											<div
+												class="icon ms-2 d-flex align-items-center justify-content-center">
 												<i class="ti-arrow-right"></i>
 											</div>
 										</a>
@@ -276,68 +300,72 @@
 							</c:otherwise>
 						</c:choose>
 					</div> --%>
-					<div class='mt-2'>
-						${currentPart.answerSheet}
-					</div>
+					<div class='mt-2'>${currentPart.answerSheet}</div>
 				</div>
 				<div class="col-3">
 					<ul class="answer-container">
 						<c:set var="startNumber" value="${0}"></c:set>
-						<c:forEach items="${enrollTest.mockTests.listeningParts}" var="listeningPart">
+						<c:forEach items="${enrollTest.mockTests.listeningParts}"
+							var="listeningPart">
 							<c:if test="${listeningPart.partId == currentPart.partId}">
 								<c:forEach items="${listeningPart.answerTests}" var="answerTest">
 									<c:set var="answer" value="" />
 									<c:forEach items="${enrollTest.answerUsers}" var="answerUser">
-										<c:if test="${answerUser.answerTest.answerId.equals(answerTest.answerId) 
+										<c:if
+											test="${answerUser.answerTest.answerId.equals(answerTest.answerId) 
 											and (not empty answerUser.answer)}">
 											<c:set var="answer" value="${answerUser.answer}" />
 										</c:if>
 									</c:forEach>
-									
+
 									<c:if test="${not empty isCompleted}">
 										<c:choose>
-											<c:when test="${not empty answer and answer.equals(answerTest.answerKey)}">
-												<li class="answer-item correct d-flex">
-													<span class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
+											<c:when
+												test="${not empty answer and answer.equals(answerTest.answerKey)}">
+												<li class="answer-item correct d-flex"><span
+													class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
 													<div class="col">
 														<input class="answer-input" type="text" value="${answer}">
-													</div>
-												</li>
+													</div></li>
 											</c:when>
 											<c:otherwise>
-												<li class="answer-item incorrect d-flex">
-													<span class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
+												<li class="answer-item incorrect d-flex"><span
+													class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
 													<div class="col">
-														<input class="answer-input" type="text" value="${answer}"> 
+														<input class="answer-input" type="text" value="${answer}">
 														<span class="correct-answer">${answerTest.answerKey}</span>
-													</div>
-												</li>
+													</div></li>
 											</c:otherwise>
 										</c:choose>
 									</c:if>
 									<c:if test="${empty isCompleted}">
-										<li class="answer-item d-flex">
-											<span class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
+										<li class="answer-item d-flex"><span
+											class="number-question d-flex justify-content-center align-items-center">${startNumber + answerTest.number}</span>
 											<div class="col">
-												<input class="answer-input not-completed" enrollTestId="${enrollTest.enrrolId}" answerTestId="${answerTest.answerId}" type="text" value="${answer}"> 
-											</div>
-										</li>
+												<input class="answer-input not-completed"
+													enrollTestId="${enrollTest.enrrolId}"
+													answerTestId="${answerTest.answerId}" type="text"
+													value="${answer}">
+											</div></li>
 									</c:if>
 								</c:forEach>
 							</c:if>
-							<c:set var="startNumber" value="${startNumber + listeningPart.answerTests.size()}"></c:set>
+							<c:set var="startNumber"
+								value="${startNumber + listeningPart.answerTests.size()}"></c:set>
 						</c:forEach>
 					</ul>
 					<div class="text-center">
 						<c:if test="${not empty nextPart}">
-							<a href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${nextPart}"></c:url>'
-							 class="d-flex btn-next-questions justify-content-center align-items-center">
-								<h6>Phần kế tiếp</h6> 
+							<a
+								href='<c:url value="/test/luyende_test?enrollTestId=${enrollTest.enrrolId}&currentPartId=${nextPart}"></c:url>'
+								class="d-flex btn-next-questions justify-content-center align-items-center">
+								<h6>Phần kế tiếp</h6>
 							</a>
 						</c:if>
 						<c:if test="${(empty nextPart) and (empty isCompleted)}">
-							<button type="button" class="btn-submit-test d-flex justify-content-center align-items-center"
-							data-bs-toggle="modal" data-bs-target="#myModal">
+							<button type="button"
+								class="btn-submit-test d-flex justify-content-center align-items-center"
+								data-bs-toggle="modal" data-bs-target="#myModal">
 								<h6>Nộp bài</h6>
 							</button>
 						</c:if>
@@ -347,37 +375,41 @@
 		</div>
 	</div>
 	<div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-    
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Xác nhận nộp bài</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-    
-                <!-- Modal body -->
-                <div class="modal-body overflow-auto">
-                    Danh sách câu hỏi
-                    <div class="spinner-border text-primary d-none"></div>
-                    <ul class="list-group">
-	                    <li class="list-group-item list-group-item-dark">Đã trả lời</li>
-	    				<li class="list-group-item list-group-item-light">Chưa trả lời</li>
-                    </ul>
-    
-                </div>
-    
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
-                    <a href='<c:url value="/test/complete_test?enrollTestId=${enrollTest.enrrolId}"></c:url>'
-                     class="btn btn-success">Xác nhận</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="my-toast"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Xác nhận nộp bài</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body overflow-auto">
+					Danh sách câu hỏi
+					<div class="spinner-border text-primary d-none"></div>
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-dark">Đã trả lời</li>
+						<li class="list-group-item list-group-item-light">Chưa trả
+							lời</li>
+					</ul>
+
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger"
+						data-bs-dismiss="modal">Hủy</button>
+					<a
+						href='<c:url value="/test/complete_test?enrollTestId=${enrollTest.enrrolId}"></c:url>'
+						class="btn btn-success">Xác nhận</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="my-toast"></div>
+
+	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
 	<script>
         const testTimer = document.querySelector('.test-time .timer');
         const player = document.querySelector('.audio-area .btn-toggle-play');
