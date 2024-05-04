@@ -55,8 +55,7 @@
 			</div>
 		</form>
 	</div>
-	<script
-		src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+	<script src="<c:url value="/assets/js/ckeditor.js"/>"></script>
 
 	<script>
 	 ClassicEditor

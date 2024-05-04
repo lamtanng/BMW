@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Add Bootstrap CSS Link -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+<link nonce="rAnd0m" rel="stylesheet"
+	href="<c:url value="/assets/css/bootstrap.min.css"/>">
 
 </head>
 <body>
@@ -90,9 +90,9 @@
 	</div>
 
 	<!-- Add Bootstrap JS and Popper.js -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
+	<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
 	<script>
 		function generateToken(length) {
 			const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
