@@ -12,12 +12,6 @@ Long count = (Long) request.getAttribute("count");
 <%@ page import="javax.servlet.jsp.PageContext"%>
 <%@ page import="javax.servlet.http.HttpServletRequest"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 	<main>
 		<section class="pt-5 pb-5">
@@ -245,4 +239,3 @@ Long count = (Long) request.getAttribute("count");
 
 	
 </body>
-</html>
