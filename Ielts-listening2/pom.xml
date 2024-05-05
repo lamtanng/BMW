@@ -10,7 +10,7 @@
 	<properties>
 
 		<hibernate.version>5.6.15.Final</hibernate.version>
-		<hibernate-jpamodelgen-version>5.6.2.Final</hibernate-jpamodelgen-version>
+		<hibernate-jpamodelgen-version>5.6.15.Final</hibernate-jpamodelgen-version>
 		<hibernate.validator>5.4.3.Final</hibernate.validator>
 
 	</properties>
