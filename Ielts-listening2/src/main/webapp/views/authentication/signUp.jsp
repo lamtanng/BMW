@@ -8,15 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Add Bootstrap CSS Link -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6 col-xl-6 col-xxl-6">
-				<img class="img-fluid" src="https://prep.vn/imgs/desk.png"
+				<img class="img-fluid" src="https://prepedu.com/imgs/login/decor.png"
 					style="height: 100%;">
 			</div>
 			<div class="col-md-6 col-xl-6 col-xxl-6">
@@ -42,6 +40,7 @@
 								type="text" placeholder="Nhập username">
 						</div>
 					</div>
+					<input type="hidden" id="csrfToken" name="csrfToken" value="">
 					<div class="mb-4">
 						<label for="pwd" class="form-label mb-2 text-secondary">
 							Mật khẩu <span class="text-danger">*</span>
@@ -52,8 +51,8 @@
 							<button onclick="handleToggleShowPassword()"
 								class="bg-white border" type="button">
 								<div style="width: 35px">
-									<i id="icon__show" class="far fa-eye"></i> <i
-										style="display: none" id="icon__hide" class="far fa-eye-slash"></i>
+									<i id="icon__show" class="fe fe-eye"></i> <i
+										style="display: none" id="icon__hide" class="fe fe-eye-off"></i>
 								</div>
 							</button>
 						</div>
@@ -68,18 +67,17 @@
 							<button onclick="handleToggleShowConfirmPassword()"
 								class="bg-white border" type="button">
 								<div style="width: 35px">
-									<i id="icon__show-confirm" class="far fa-eye"></i> <i
+									<i id="icon__show-confirm" class="fe fe-eye"></i> <i
 										style="display: none" id="icon__hide-confirm"
-										class="far fa-eye-slash"></i>
+										class="fe fe-eye-off"></i>
 								</div>
 							</button>
 						</div>
 					</div>
 					<div class="my-4">
-						<form method="post">
-							<button class="btn btn-primary fw-bold w-100 " type="submit">
-								Đăng ký</button>
-						</form>
+						<button class="btn btn-primary fw-bold w-100 " type="submit">
+							Đăng ký</button>
+
 					</div>
 					<span class="text-primary"> Đã có tài khoản? <a
 						class="text-decoration-underline" href="authentication-login"><strong>Đăng
@@ -90,10 +88,45 @@
 	</div>
 
 	<!-- Add Bootstrap JS and Popper.js -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 	<script>
+		function generateToken(length) {
+			const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let token = '';
+			for (let i = 0; i < length; i++) {
+				const randomIndex = Math.floor(Math.random() * charset.length);
+				token += charset[randomIndex];
+			}
+			return token;
+		}
+
+		// Retrieve CSRF token from cookie and set it as the value of the hidden input field
+		const csrfTokenGlobal = generateToken(16);
+		console.log(csrfTokenGlobal);
+		if (csrfTokenGlobal) {
+			document.getElementById('csrfToken').value = csrfTokenGlobal;
+		}
+
+		document.addEventListener("DOMContentLoaded", function() {
+			const form = document.querySelector('form');
+
+			form.addEventListener('submit', function(event) {
+				const csrfToken = document.getElementById('csrfToken').value;
+				console.log(csrfTokenGlobal, csrfToken)
+				if (!isValidCsrfToken(csrfToken)) {
+					event.preventDefault();
+					console.error('CSRF token is invalid');
+
+				} else {
+					console.log('CSRF token is valid');
+					// Proceed with form submission
+					form.submit();
+				}
+			});
+			function isValidCsrfToken(token) {
+				return token === csrfTokenGlobal
+			}
+		});
+
 		const message = "${message}";
 		if (message && message.trim() !== "") {
 			// If the message is not empty, show it as a toast

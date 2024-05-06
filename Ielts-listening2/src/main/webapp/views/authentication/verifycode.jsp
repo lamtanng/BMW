@@ -9,10 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <!-- Add Bootstrap CSS Link -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/font-awesome.css" />
+
 
 <style>
 </style>
@@ -37,15 +34,18 @@
 				<div class="bg-white p-4 rounded-3">
 					<div class="text-center">
 						<p class="fw-bold fs-5 mb-2">Xác thực OTP</p>
-						<p class="fs-6 mb-1">Mã OTP đã được gửi đến Email ${cookie['email'].value}</p>
+						<p class="fs-6 mb-1">Mã OTP đã được gửi đến Email
+							${cookie['email'].value}</p>
 						<p class="fs-6 mb-1">Vui lòng nhập mã xác nhận bên dưới</p>
 					</div>
 					<form action="authentication-verifycode" method="post">
+						<input type="hidden" class="csrfToken" name="csrfToken" value="">
 						<div
 							class="w-100 mt-4 mb-3 d-flex flex-row justify-content-between">
 							<c:forEach var="i" begin="1" end="6" step="1">
+
 								<input
-									class="otp border border-success text-center fs-2 fw-bold mb-2" 
+									class="otp border border-success text-center fs-2 fw-bold mb-2"
 									style="height: 60px; width: 60px; border-radius: 10px;"
 									name="otp${i}" type="text" autocomplete="none">
 							</c:forEach>
@@ -55,23 +55,71 @@
 								Nhận</button>
 						</div>
 						<div id="countdown" class="text-center mt-5"></div>
-						<div id="turn" class="text-center text-danger" > số lần còn lại bạn được nhập  </div>
-						<div class="text-center">
-							Bạn chưa nhận được mã? <a style="text-decoration:none"
-								href="http://localhost:8080/Ielts-listening2/authentication-resent">Gửi
-								mã</a>
-						</div>
+						<div id="turn" class="text-center text-danger">số lần còn
+							lại bạn được nhập</div>
 					</form>
+					<div class="text-center">
+						<form
+							action="http://localhost:8080/Ielts-listening2/authentication-resent"
+							method="GET">
+							<input type="hidden" class="csrfToken" name="csrfToken" value="">
+							Bạn chưa nhận được mã?
+							<button style="text-decoration: none" type="submit">Gửi
+								mã</button>
+						</form>
+
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- Add Bootstrap JS and Popper.js -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+	
 	<script>
+	function generateToken(length) {
+		const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		let token = '';
+		for (let i = 0; i < length; i++) {
+			const randomIndex = Math.floor(Math.random() * charset.length);
+			token += charset[randomIndex];
+		}
+		return token;
+	}
+
+	// Retrieve CSRF token from cookie and set it as the value of the hidden input field
+	const csrfTokenGlobal = generateToken(16);
+	console.log(csrfTokenGlobal);
+	if (csrfTokenGlobal) {
+		const elements = document.querySelectorAll('.csrfToken');
+		elements.forEach(function(element) {
+			element.value = csrfTokenGlobal;
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", function() {
+		const forms = document.querySelectorAll('form');
+
+		forms.forEach(function(form) {
+			form.addEventListener('submit', function(event) {
+				const csrfToken = form.querySelector('.csrfToken').value; // Assuming each form has an element with the class 'csrfToken'
+				console.log(csrfTokenGlobal, csrfToken)
+				if (!isValidCsrfToken(csrfToken)) {
+					event.preventDefault();
+					console.error('CSRF token is invalid');
+				} else {
+					console.log('CSRF token is valid');
+					// Proceed with form submission
+					form.submit();
+				}
+			});
+		});
+
+		function isValidCsrfToken(token) {
+			return token === csrfTokenGlobal;
+		}
+	});
+	
 		function getCookie(name) {
 		    function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
 		    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));

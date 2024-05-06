@@ -5,9 +5,7 @@
 <html>
 <head>
 
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-	rel="stylesheet">
+<link href="../assets/css/fontawesome.css" rel="stylesheet">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,19 +44,10 @@
 <!-- Theme CSS -->
 <link rel="stylesheet" href="../assets/css/theme.min.css" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<script
-	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
+<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/assets/js/popper.min.js"/>"></script>
+<script src="<c:url value="/assets/js/datatables.min.js"/>"></script>
 <script>
 	$(document)
 			.ready(
